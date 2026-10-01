@@ -9074,3 +9074,28 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   2. Run the next A-drift round on a clean export whenever OPUS re-statuses. The order is exact removals and counts,
      then identity selectors, then derived selectors (ECF, GCR) last.
 - **Latest coherent commit:** `b0299bf84`; this block's inbox commit follows it.
+
+## Resume state - batch 171 (EC7-205, SWE2-EC7-SHARED-HUB-IDENTIFICATION-171) re-claimed
+
+- **Identity:** SWE2-EC7 (Devin session).
+- **Status:** `SWE2-EC7-SHARED-HUB-IDENTIFICATION-171` re-claimed at board rev 41464 (`op_claim_hub171b.json`).
+  A FABLE-session executor had released the original claim (rev 40484) while decode work sat uncommitted in this
+  worktree; the decode+append has since completed, so the claim is re-taken and the work is being banked.
+- **Done so far:** all 22 bodies decoded from shipping bytes and appended to 14 bearing hosts (npc-name-dictionary,
+  effect-element-type-dispatch, CONTRACT-per-frame-update-gate, two-transform-primitives, ta-texture-animation-lists,
+  config-screen, map-screens, external-source-owner, menu-screen-atlas, file-size-tables-fst,
+  font-data-kerning-and-expansion, what-the-game-asks-windows-for, how-a-sound-request-becomes-a-voice,
+  loader-bound-bin-families). Append script `Database/Tools/work/hub171_append.py`; all interior anchors verified on
+  instruction boundaries before append.
+- **Outcome:** a peer EC7 session had already banked this session's earlier work at `69b8ed680` (18 entries on
+  11 pages; the 4 entries on overlay-blocked pages parked in `hub171/batch171-rebased.patch`). The overlays have
+  since committed, so the parked 4 landed as pure EOF appends at `7f773f19f` (config screen `0056C3A0`,
+  map screens `00402C30`, font page `00330190`+`00330220`). All 22 bodies now published across 14 bearing hosts.
+- **Gates:** anchor census clean (6,413, 0 MID, 0 outside-known-body). Address gate: only pre-existing
+  unsupported flags. Hash audit clean (standing unreproduced/EXP-stamp set only, nothing on batch hosts).
+  Neighbour guard ADDS NOTHING (451 -> 451) on complete worktree sides - the earlier 5-pair refusal was an
+  incomplete-checkout artifact. Audit splice `4155f5009`.
+- **Lifecycle:** publish `7f773f19f`, seal `93e7bd189`; tail+board-tail+fin in flight.
+- **Exact next action:** board-tail -> fin marker. Then the two READY EC7-directed requests:
+  OPUS-REQ-EC7-BLINKING-ICON-EQ0-1001, OPUS-REQ-EC7-ROUND5-FOLLOWUPS-1001.
+- **Latest coherent commit:** `93e7bd189` (batch-171 seal); research task DONE at `69b8ed680`.

@@ -1,0 +1,91 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "b7008218304eed121d135e28eb0d6761f58bf14e00fd344be92f83778829e7bb",
+  "positive_producer_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+  "source_order_control": {
+    "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+    "gate_lines": [
+      40,
+      46
+    ],
+    "output_line": 174,
+    "gate_before_output": true,
+    "method": "Static AST actual producer path, not helper existence"
+  },
+  "cases": [
+    {
+      "name": "failed-capture",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-c1-nibble-producers\\controls-01\\failed-capture\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+      "diagnostic": "required capture status failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f1f592b2c2214b9c246ee70a2da584433e389b1262abc49217906e03aaaa112c"
+    },
+    {
+      "name": "incomplete-capture-wrapper",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-c1-nibble-producers\\controls-01\\incomplete-capture-wrapper\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+      "diagnostic": "actual capture incomplete",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "462edb55d5555c4bb5afe2d31bea61459fe6257f8fb2dec163535d5a57235c31"
+    },
+    {
+      "name": "missing-source",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-c1-nibble-producers\\controls-01\\missing-source\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f7b02c59a1945acccd378fc837e39c987b80cf72eea8ed8c7931c9cad7c001f0"
+    },
+    {
+      "name": "coherent-nibble-shift-mutation",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-c1-nibble-producers\\controls-01\\coherent-nibble-shift-mutation\\prove.py",
+        "refused-result.json"
+      ],
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b2ec1c2cb2a25ede9e6a94106d88e7cc9369fe968679d2dfe8c15fcefd9fdffc"
+    }
+  ],
+  "count": 4,
+  "limits": "Four actual disposable producer CLI refusals plus checked positive. Not original-code/native/live execution, fault sampling or independent project acceptance."
+}

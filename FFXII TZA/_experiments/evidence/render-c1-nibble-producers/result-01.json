@@ -1,0 +1,408 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original positive C1 stores and upper-nibble invariant",
+  "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "35199dc3eb9292009165864788d95af71d01b15d96c0b897fa8d694662ea24b4"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 717,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 38,
+  "graphs": [
+    {
+      "entry": "0x2e28e0",
+      "instructions": 470,
+      "returns": [
+        "0x2e30c9"
+      ],
+      "calls": [
+        [
+          3025173,
+          "0x263ff0"
+        ],
+        [
+          3025241,
+          "0x25ab30"
+        ],
+        [
+          3025249,
+          "0x25d480"
+        ],
+        [
+          3025304,
+          "0x42fb80"
+        ],
+        [
+          3025478,
+          "0x3e5e20"
+        ],
+        [
+          3025557,
+          "0x2ea2a0"
+        ],
+        [
+          3025640,
+          "0x31b750"
+        ],
+        [
+          3025650,
+          "0x3e7500"
+        ],
+        [
+          3025733,
+          "0x423280"
+        ],
+        [
+          3025848,
+          "0x2e8e20"
+        ],
+        [
+          3025894,
+          "0x427300"
+        ],
+        [
+          3025937,
+          "0x426e20"
+        ],
+        [
+          3025945,
+          "0x2e8fd0"
+        ],
+        [
+          3025953,
+          "0x2e3500"
+        ],
+        [
+          3025998,
+          "0x2e5c90"
+        ],
+        [
+          3026028,
+          "0x2e5e10"
+        ],
+        [
+          3026054,
+          "0x269f90"
+        ],
+        [
+          3026089,
+          "0x3e6150"
+        ],
+        [
+          3026131,
+          "0x3e6150"
+        ],
+        [
+          3026166,
+          "0x263640"
+        ],
+        [
+          3026240,
+          "0x3e6bf0"
+        ],
+        [
+          3026324,
+          "0x3e6be0"
+        ],
+        [
+          3026347,
+          "0x2e7ce0"
+        ],
+        [
+          3026355,
+          "0x2e92f0"
+        ],
+        [
+          3026384,
+          "0x2ec6b0"
+        ],
+        [
+          3026444,
+          "0x426fa0"
+        ],
+        [
+          3026519,
+          "0x2eb0d0"
+        ],
+        [
+          3026536,
+          "0x2652d0"
+        ],
+        [
+          3026551,
+          "0x3e6150"
+        ],
+        [
+          3026568,
+          "0x3e6150"
+        ],
+        [
+          3026577,
+          "0x377c20"
+        ],
+        [
+          3026594,
+          "0x3e6150"
+        ],
+        [
+          3026611,
+          "0x3e6150"
+        ],
+        [
+          3026628,
+          "0x3e6150"
+        ],
+        [
+          3026645,
+          "0x3e6150"
+        ],
+        [
+          3026661,
+          "0x3e6150"
+        ],
+        [
+          3026674,
+          "0x3e6310"
+        ],
+        [
+          3026689,
+          "0x3e6150"
+        ],
+        [
+          3026718,
+          "0x3e6150"
+        ],
+        [
+          3026740,
+          "0x3e6150"
+        ],
+        [
+          3026764,
+          "0x26aa30"
+        ],
+        [
+          3026775,
+          "0x269e60"
+        ],
+        [
+          3026821,
+          "0x26af40"
+        ],
+        [
+          3026837,
+          "0x26b2e0"
+        ],
+        [
+          3026853,
+          "0x26a370"
+        ],
+        [
+          3026938,
+          "0x3e6bc0"
+        ],
+        [
+          3026965,
+          "0x2e7c70"
+        ],
+        [
+          3027015,
+          "0x2ec3f0"
+        ],
+        [
+          3027023,
+          "0x2e8ee0"
+        ],
+        [
+          3027031,
+          "0x2eb930"
+        ],
+        [
+          3027123,
+          "0x427280"
+        ]
+      ]
+    },
+    {
+      "entry": "0x2e3110",
+      "instructions": 247,
+      "returns": [
+        "0x2e34f4"
+      ],
+      "calls": [
+        [
+          3027572,
+          "0x2ee0d0"
+        ],
+        [
+          3027599,
+          "0x2ede70"
+        ],
+        [
+          3027649,
+          "0x2ec3f0"
+        ],
+        [
+          3027657,
+          "0x2e8ee0"
+        ],
+        [
+          3027691,
+          "0x42f250"
+        ],
+        [
+          3027713,
+          "0x2ed470"
+        ],
+        [
+          3027721,
+          "0x2eb810"
+        ],
+        [
+          3027755,
+          "0x269d60"
+        ],
+        [
+          3027777,
+          "0x2e8fd0"
+        ],
+        [
+          3027803,
+          "0x42fb80"
+        ],
+        [
+          3027935,
+          "0x426e20"
+        ],
+        [
+          3027950,
+          "0x2edaa0"
+        ],
+        [
+          3027972,
+          "0x2ee050"
+        ],
+        [
+          3027980,
+          "0x2e8fd0"
+        ],
+        [
+          3028031,
+          "0x4288b0"
+        ],
+        [
+          3028070,
+          "0x2edf90"
+        ],
+        [
+          3028139,
+          "0x2edf90"
+        ],
+        [
+          3028178,
+          "0x2edf90"
+        ]
+      ]
+    }
+  ],
+  "positive_store_flow": [
+    {
+      "entry": "0x2e28e0",
+      "load": "0x2e29a4",
+      "shift": "0x2e29b6",
+      "store": "0x2e29e9",
+      "table_global": "0x22c6f28",
+      "record_stride": "0x740"
+    },
+    {
+      "entry": "0x2e3110",
+      "load": "0x2e3367",
+      "shift": "0x2e3380",
+      "store": "0x2e33b3",
+      "table_global": "0x22c6f28",
+      "record_stride": "0x740"
+    }
+  ],
+  "result": "Both supplied positiveC1 stores takezeroextendedsourceBYTE+10, logicalSHREDX4, thenstoreDL intoCharacterRenderRecordC1. Conditionalstorevalue=sourcebyte>>4 in0..15. No opaque call/EDXwrite occursbetweenread/shift/store; bothload/shift dominate respectivewrite.",
+  "identity": "Guarded record derivesfromwordindex inobjectC0 state, signextends16 andusesglobal022C6F28/stride740; target284 nonzero guard. Thisdoesnotprovenonnegative/inrange index orproperobjectinitialization.",
+  "source_scope": "2E28E0 loads source fromRSI assignedentryobjectC0;2E3110 source isRBX selectedslot, notnecessarilyrootstate. No universalargumentDL provenance orallselectedslot initialization proof.",
+  "domain": "Undertheseconditionalwrites, laterfactorysigned-byte read cannotbenegative. Values2..15 remainpossibleinrepresentation; 0/1 iff sourcebyte& E0h==0, equivalentlysourcebyte<=1Fh. Actualsource-byte domain/shippeddomain needseparateproof.",
+  "affected_claims": [
+    "CharacterRenderRecordparamByteC1 hasprovedproducer arithmetic anddownstreamaccountinguse beyond neutralcopy census; ownerqualifiedmeaning/range updatepending",
+    "Accounting-dispatch-index arbitrarynegative countermodels remainmathematical butareexcludedbythese suppliedwriter outputs; no completeallwriter/alias closure",
+    "Two-DWORDaccountingextent stillnotprovedbytagdispatch or upper-nibblebound; needactualsourcebit5..7 exclusion/allcaller+storageevidence"
+  ],
+  "representation_calculation": {
+    "inputs": 256,
+    "outputs": 16,
+    "inputs_per_output": 16,
+    "method": "Exhaustivebyte representation calculations, notnativecalls/live observations"
+  },
+  "mathematical_boundaries": [
+    {
+      "source_byte": "0x0",
+      "C1": 0,
+      "factory_MOVSX_byte": 0,
+      "two_value_condition": true
+    },
+    {
+      "source_byte": "0xf",
+      "C1": 0,
+      "factory_MOVSX_byte": 0,
+      "two_value_condition": true
+    },
+    {
+      "source_byte": "0x10",
+      "C1": 1,
+      "factory_MOVSX_byte": 1,
+      "two_value_condition": true
+    },
+    {
+      "source_byte": "0x1f",
+      "C1": 1,
+      "factory_MOVSX_byte": 1,
+      "two_value_condition": true
+    },
+    {
+      "source_byte": "0x20",
+      "C1": 2,
+      "factory_MOVSX_byte": 2,
+      "two_value_condition": false
+    },
+    {
+      "source_byte": "0x7f",
+      "C1": 7,
+      "factory_MOVSX_byte": 7,
+      "two_value_condition": false
+    },
+    {
+      "source_byte": "0x80",
+      "C1": 8,
+      "factory_MOVSX_byte": 8,
+      "two_value_condition": false
+    },
+    {
+      "source_byte": "0xff",
+      "C1": 15,
+      "factory_MOVSX_byte": 15,
+      "two_value_condition": false
+    }
+  ],
+  "limits": [
+    "Originalsource only; no native/harness/live game execution or naturalbadstate observation",
+    "Two positivewrites within complete suppliedbodies, notallpossiblewriters/bulkcopy/alias/constructor orlifetime invariant",
+    "Normalvalidobject/frame/table/header execution andnointerference required; originalsigned16indexguards arenotuniversalboundschecks",
+    "No sourceinputbit5..7 naturalzero proof, actualaccountingstorageextent or arraygeometry adjudication; consumers independentlypending",
+    "No nativecallee side effects/reachability/resource lifecycle certification; EXP127invalid, menuspent/unapproved K14closed"
+  ]
+}

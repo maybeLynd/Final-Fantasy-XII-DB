@@ -1,0 +1,19 @@
+PASS A0 certified image -- 73461D089620
+PASS L1 loader passes (edx,r8d,r9d)=(rec+0,rec+4,rec+8)
+PASS W1a writer spills r8d (record +4) to its home slot
+PASS W1b outer find-or-insert keys on &second: lea rdx,[rsp+0x60]; call 001FC420
+PASS W1c the map object is font+0x70
+PASS W2a ebx = edx (record +0) is the inner key
+PASS W2b inner compare: [node+0x20] vs ebx
+PASS W2c inner hit stores adjust (edi) at node+0x24
+PASS W2d inner miss inserts through 001FC9F0
+PASS W3 find-or-insert returns lea rax,[node+0x28]
+PASS W4 inner insert requests 0x28-byte nodes
+PASS R1a outer tree: sentinel rcx+0x78, root [rcx+0x88]
+PASS R1b outer key compare vs r8d (the CURRENT cp)
+PASS R1c inner tree lives in the outer node: sentinel node+0x30, root [node+0x40]
+PASS R1d inner key compare vs r10d = edx (the PREVIOUS cp)
+PASS R1e kern value returned from inner node +0x24
+PASS R2a 001E9780 forwards its edx to r8d and takes edx from [obj+0x20]
+PASS R2b kern arm passes ecx = [rbx+0x20] (the current glyph's kern cp)
+FAILS 0

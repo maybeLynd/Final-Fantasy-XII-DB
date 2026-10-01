@@ -59,11 +59,23 @@ validated through `00317930`. The code alone does not exclude region A; the auth
 (≤ ~0x1F for augment slots) and the callers' `k ≤ 0x27` record provenance do.
 
 **Update (same commit family, caller-cone audit):** the full caller cone has now been read —
-see [`CALLER-CONE-0030E360-0930.md`](CALLER-CONE-0030E360-0930.md). Two call sites falsify the
+see [`CALLER-CONE-0030E360-0930.md`](CALLER-CONE-0030E360-0930.md). ~~Two call sites falsify the
 `id ≤ 0x1F` assumption: `002FDDA0`'s message-switch arms `dx=0x4049`/`0x404A` pass `id = 0xF8`
 and `0xD9`, which escape the record for **every** `k` and land in region A for `k ∈ {38,39}`.
 Whether region A is actually written reduces to a runtime allocation question — whether any
-unit's `qword[unit+0x698]` stats record is ever index 38/39.
+unit's `qword[unit+0x698]` stats record is ever index 38/39.~~
+
+**Second update (2026-10-01, on ASTRA's accepted order-switch packet
+`_experiments/evidence/ov58d-order-switch/`, review
+`auditspec-review-astra-ov58d-order-switch-1001` — ACCEPT):** the first update's falsification
+rested on a one-stage switch decode — `002FDDA0` is a two-stage compressed switch (selector
+byte `002FE54C + (msgid − 0x4046)`, arm RVA `002FE534 + 4·selector`), and `0x4049`/`0x404A`
+take selector 1 → arm `002FDE7B`, which never calls `0030E360`. The two `0030E360` call sites
+inside `002FDDA0` actually serve `0x4051–0x4070` and `0x4071–0x4090` with `id ∈ 0..31`.
+**Net: every identified caller passes `id ≤ 31`; no caller falsifies the contract.** The
+named reach stands only as code-level fact — `0030E360` applies no bound to its byte index —
+and region-A reach still requires an unidentified caller passing `id ≥ 0x43` against `k = 39`,
+or a base that is not a `k ≤ 39` record.
 
 ## 3. INDEXED-BELOW — base below `state + 8` (38 functions)
 

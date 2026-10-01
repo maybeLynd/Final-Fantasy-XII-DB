@@ -384,3 +384,4 @@ labelled *"Enable 100% successful …"* cycle **four, three and five** states ov
 - **Input — CLIENT (1 edge).** 1 inbound (Input bodies `0079C140` call page-cited `00182DE0`). Substantive edges include `00182DE0` is called by `0079C140`.
 - **PlatformOnlineAchievements — SERVICE (1 edge).** 1 outbound (page-cited `001CD0E0` call PlatformOnlineAchievements bodies `003166F0`). Substantive edges include `001CD0E0` calls `003166F0`.
 - **WorldAreaField — SERVICE (2 edges).** 2 outbound (page-cited `001CD0E0` call WorldAreaField bodies `WorldTransition_GetTransitionFieldId` (00314910), `FieldData_GetVariable0` (00265270)). Substantive edges include `001CD0E0` calls `WorldTransition_GetTransitionFieldId` (00314910); `001CD0E0` calls `FieldData_GetVariable0` (00265270).
+- **PlatformOnlineAchievements — SERVICE (1 edge).** 1 outbound (page-cited `001CD0E0` call PlatformOnlineAchievements bodies `003166F0`). Substantive edges include `001CD0E0` calls `003166F0`.

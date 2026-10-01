@@ -1,0 +1,57 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "7c8adc38cecd72d2b0a48540e4987fcc702ed56bafa1439be7d3941c87a6f8c9",
+  "positive_producer_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+  "cases": [
+    {
+      "name": "failed-capture",
+      "exit": 1,
+      "diagnostic": "required capture status failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d24ac327b7c5c371590dbbf57893a23c76f5e13c3cddaa3a866602bf29d8cb9f",
+      "terminal": true,
+      "exception": null
+    },
+    {
+      "name": "failed-retained-capture",
+      "exit": 1,
+      "diagnostic": "retained input changed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2f37fbde6ea12e01ca457a33290d2346063ed5ba6839b363d00e9e6de0b25637",
+      "terminal": true,
+      "exception": null
+    },
+    {
+      "name": "missing-source",
+      "exit": 1,
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8a58480b24e802133d24f60f5f8079d77291ea7c0af1163834fc629ce68ad083",
+      "terminal": true,
+      "exception": null
+    },
+    {
+      "name": "coherent-page-count-store-mutation",
+      "exit": 1,
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d24899ba024a0a062b49cb60f51ff6c4c51029bcb2dbf815634d229b45f19b1a",
+      "terminal": true,
+      "exception": null
+    }
+  ],
+  "count": 4,
+  "limits": "Disposable CLI evidence mutations only; no FF12 native/game, no original-code execution or live observation"
+}

@@ -1,0 +1,99 @@
+{
+  "retained": [
+    {
+      "slug": "ov21-bank-capacity-domain",
+      "manifest_sha256": "c78420f604a4763f41074eec85b307eea39750b008623b4b28d38bc6e9cec70b",
+      "source": "source-01.json",
+      "capture_driver": "capture.py",
+      "capture_status": "capture-01.status.json",
+      "legacy_receipt_schema": false,
+      "files": [
+        {
+          "path": "source-01.json",
+          "sha256": "7b25b744885f31e0c3ff7b76e92031c373d6d4ec532acac5cc964a6582cce4c5"
+        },
+        {
+          "path": "capture.py",
+          "sha256": "2539d5399cd2c1e5aac9bf2f25861e7ec37be784048ea566375fd6156f87135c"
+        },
+        {
+          "path": "capture-01.status.json",
+          "sha256": "dd6baf69748044e6c3653de193c17fcf4ec91912ababe81704ab8bb37fbb690c"
+        },
+        {
+          "path": "capture-01.stdout",
+          "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+        },
+        {
+          "path": "capture-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "manifest.json",
+          "sha256": "c78420f604a4763f41074eec85b307eea39750b008623b4b28d38bc6e9cec70b"
+        }
+      ]
+    },
+    {
+      "slug": "ov21-page-selection-invariant",
+      "manifest_sha256": "6fab4d403a4bdaf91b6054e2525e6efe9dc8537d66e7f7e911be428fa50c9a5b",
+      "source": "source-01.json",
+      "capture_driver": "capture.py",
+      "capture_status": "capture-01.status.json",
+      "legacy_receipt_schema": false,
+      "files": [
+        {
+          "path": "source-01.json",
+          "sha256": "a3af2c8f3669f4e9e1cadee57661df164a9a226b5cb18d9d59ad85aaedf61561"
+        },
+        {
+          "path": "capture.py",
+          "sha256": "50b6dccf9a69fc7d97ad72193ddf444112cbf8d033836fac445da77b2b207065"
+        },
+        {
+          "path": "capture-01.status.json",
+          "sha256": "7f135b5d3a49b0489d64e6aa2428935841fe0a7af0f30f3b0f726e0e72640560"
+        },
+        {
+          "path": "capture-01.stdout",
+          "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+        },
+        {
+          "path": "capture-01.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "manifest.json",
+          "sha256": "6fab4d403a4bdaf91b6054e2525e6efe9dc8537d66e7f7e911be428fa50c9a5b"
+        }
+      ]
+    },
+    {
+      "slug": "namebinding-callback-inputs",
+      "manifest_sha256": "940c92959f59daf104c8047b76e71956e4671efe81e5f7b20e617ab244164b9a",
+      "source": "namebinding-callback-inputs-source-01.json",
+      "capture_driver": "capture-namebinding-callback-inputs.py",
+      "capture_status": "namebinding-callback-inputs-capture-01.status.json",
+      "legacy_receipt_schema": true,
+      "files": [
+        {
+          "path": "namebinding-callback-inputs-source-01.json",
+          "sha256": "287433b2f57eab611f748a316243ed23cfd634f2d71de7187a0c02d945090827"
+        },
+        {
+          "path": "capture-namebinding-callback-inputs.py",
+          "sha256": "5b4d3d6d9d1adc4bbea6e0693d665fd3150ad1dd35406641f796b2e6596db36a"
+        },
+        {
+          "path": "namebinding-callback-inputs-capture-01.status.json",
+          "sha256": "75642a779714d63cae92d7d332533ae8ec3066198b4ef9a52ed30c6321777cb0"
+        },
+        {
+          "path": "manifest.json",
+          "sha256": "940c92959f59daf104c8047b76e71956e4671efe81e5f7b20e617ab244164b9a"
+        }
+      ]
+    }
+  ],
+  "limits": "Retained originalbytes/provenance revalidated, no additional capture/test execution credited. Legacy receipt terminal/exception fields absent; not treated as live/harness proof."
+}

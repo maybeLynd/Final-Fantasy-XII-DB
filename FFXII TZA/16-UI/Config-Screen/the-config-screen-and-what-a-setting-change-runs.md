@@ -1025,3 +1025,7 @@ Interior anchor `003F5C72` (function `003F5BE0`).
 `00407150` (233 B) is the bit-1 flag setter `00408190`/`004088A0`/`004088B0` call on the row object: `dword[rcx+0xC8]` bit 1 is compared against `edx` and xor-replaced only when it differs; the child `rbx = [rcx+0xC0]` then either (a) when `byte[+0xC0]` is clear, commits `+0x118` into `+0x114`, adds `+0x11C` into `+0x124` and `+0xE4`, forces `+0x128` to 1.0f and runs `00407450`, or (b) picks `+0xE0`/0 into `+0xE4` by `byte[+0xDC]` and runs `00407720` - both paths end `or dword[+0xD8], 0x20`, the dirty flag this page's rows honour.
 
 Interior anchor `004071E3` (function `00407150`).
+
+`0056C3A0` (239 B) is the child-visibility combinator `005677A0` runs on a settings change: manager `0209AC30`'s `+0xDE0` word resolves through `00282DF0`, the record's `+0x60` word indexes `02EBF190+0x7370` into `+0xC0`/`+0xC4`, and the mode then sets or clears bit 0 of `+8` across the `+0x60` chain's five children (alternate arms for modes 1 and 2) - the panel-visibility propagation a settings change triggers..
+
+Interior anchor `0056C3C7` (function `0056C3A0`).

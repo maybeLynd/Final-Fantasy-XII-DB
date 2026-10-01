@@ -1,7 +1,7 @@
 ---
 system: The `qstl` quest-list string index — `quest/menuquest.lst`
 category: 02-Resource-And-Asset-Pipeline
-status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTRACT's reconciliation; superseded readings are marked on the page) — no registered residue left: the field-level readers answered (RC-31: 0037EFC0 and 0037E5B0, order-independent; +0x04 unread, +0x08 read as u16, correcting §2) (status line current 2026-09-30, SWE2-CONTRACT)
+status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTRACT's reconciliation; superseded readings are marked on the page) — no registered residue left: the field-level readers answered (RC-31: 0037EFC0 and 0037E5B0, order-independent; +0x04 read by neither reader nor any of the 27 functions holding the list pointer 02AED490 (census scope), +0x08 read as u16, correcting §2) (status line current 2026-09-30, SWE2-CONTRACT)
 owner_layer: CodeDomain:Presentation.Menu.QuestList
 evidence_tier: 1
 verified_against:
@@ -150,9 +150,9 @@ check.
 - [x] **RC-31.** Which function parses `menuquest.lst` (the widget `0037F4D0` requests it as kind 7 `0x13A`): its
   reader of the directory and string blob, what `+0x04` = 100 bounds, what the directory's `+0x04` word (3, 0 or 4)
   selects, and whether the lookup depends on the shipped id order. Registered 2026-09-30 (SWE2-CONTRACT); static.
-  *Applied 2026-09-30 (records) RC-31:* **ANSWERED 2026-09-30 (static; SWE2-DATA's record `_index/candidates/rc22-34-resource-readers-0930/` §4, commit `1261e2044`, `lst_reader.py`): the readers are `0037EFC0` and `0037E5B0`**; the lookup is order-independent; header `+0x04` is read by nothing, `+0x08` is read as a u16; the directory `+0x04` word's low nibble is a threshold compared against `0037EE10`. *(This corrects §2's `+0x08` "u32 dataOff" width and `+0x04` "capacity" reading — see the note under §7.)*
+  *Applied 2026-09-30 (records) RC-31:* **ANSWERED 2026-09-30 (static; SWE2-DATA's record `_index/candidates/rc22-34-resource-readers-0930/` §4, commit `1261e2044`, `lst_reader.py`): the readers are `0037EFC0` and `0037E5B0`**; the lookup is order-independent; header `+0x04` is read by neither reader nor any of the 27 functions holding the list pointer `02AED490` (census scope), `+0x08` is read as a u16; the directory `+0x04` word's low nibble is a threshold compared against `0037EE10`. *(This corrects §2's `+0x08` "u32 dataOff" width and `+0x04` "capacity" reading — see the note under §7.)*
 
-*Superseded readings, 2026-09-30 (SWE2-CONTRACT, from SWE2-DATA's record `_index/candidates/rc22-34-resource-readers-0930/` §4, commit `1261e2044`): §2's `+0x08` "u32 dataOff" is read as a u16, and `+0x04` "capacity" is read by nothing (RC-31); the directory's `+0x04` (`kind` / `aux`) low nibble is a threshold against `0037EE10`. The struct is kept as written.*
+*Superseded readings, 2026-09-30 (SWE2-CONTRACT, from SWE2-DATA's record `_index/candidates/rc22-34-resource-readers-0930/` §4, commit `1261e2044`): §2's `+0x08` "u32 dataOff" is read as a u16, and `+0x04` "capacity" is read by neither reader nor any of the 27 functions holding the list pointer `02AED490` (census scope; RC-31); the directory's `+0x04` (`kind` / `aux`) low nibble is a threshold against `0037EE10`. The struct is kept as written.*
 
 ## 8. Related
 

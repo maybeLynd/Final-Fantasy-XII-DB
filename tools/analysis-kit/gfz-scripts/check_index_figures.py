@@ -46,7 +46,7 @@ reports nothing. **A mutation that does not fire means the code is robust OR the
 its target; three times here it was the second**, which is visible only because it was run.
 
 The `(?!of\b)` lookahead is therefore REDUNDANT and is kept deliberately: it states the intent at
-the point of the pattern, and a later edit that relaxes `[A-Za-z()\-]+` would otherwise silently
+the point of the pattern, and a later edit that relaxes `[A-Za-z()\\-]+` would otherwise silently
 remove the only guard.
 """
 import argparse
@@ -289,11 +289,19 @@ def main():
     print("  control passed: the narrowing still catches `N of M documents`.")
 
     # CONTROL -----------------------------------------------------------------
-    if confirmations == 0:
-        print("\n  CONTROL FAILED: not one index quotes any live figure, so the extractor is not")
-        print("  reading what it claims to. Every zero below would be meaningless.")
+    # EXTRACTOR HEALTH IS "IT READ QUOTED FIGURES AT ALL", not "some index quotes today's value".
+    # The first version required a live match, which is a fact about the corpus: once every index
+    # figure had been dated (c31659ad9), no index quoted the live value and the control failed on a
+    # healthy extractor, exiting 2 over a real unmarked hit (found 2026-10-01 by a text-only audit
+    # pre-run, cloud stream A; OPUS wrote this tool on 2026-09-14). A broken extractor reads nothing
+    # in any role, so the sum below is zero exactly when the walk is blind.
+    extracted = confirmations + len(historical) + len(hits) + subsets
+    if extracted == 0:
+        print("\n  CONTROL FAILED: the walk extracted no quoted figure in any role, so the extractor")
+        print("  is not reading what it claims to. Every zero above would be meaningless.")
         return 2
-    print("\n  control passed: the extractor finds live figures quoted in the indexes.")
+    print("\n  control passed: the extractor read %d quoted figures (%d of them the live value)."
+          % (extracted, confirmations))
 
     if hits:
         print("\nQUOTED FIGURES WITH NO HISTORICAL MARKER - each is a QUESTION, not a defect.")

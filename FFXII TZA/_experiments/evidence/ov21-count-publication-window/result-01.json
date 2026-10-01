@@ -1,0 +1,261 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original count order and closed direct callee graph",
+  "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    },
+    {
+      "path": "retained/ov21-bank-capacity-domain/source-01.json",
+      "sha256": "7b25b744885f31e0c3ff7b76e92031c373d6d4ec532acac5cc964a6582cce4c5"
+    },
+    {
+      "path": "retained/ov21-page-selection-invariant/source-01.json",
+      "sha256": "a3af2c8f3669f4e9e1cadee57661df164a9a226b5cb18d9d59ad85aaedf61561"
+    },
+    {
+      "path": "retained/namebinding-callback-inputs/namebinding-callback-inputs-source-01.json",
+      "sha256": "287433b2f57eab611f748a316243ed23cfd634f2d71de7187a0c02d945090827"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 128,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 17,
+  "graphs": [
+    {
+      "entry": "0x51fcf0",
+      "instructions": 93,
+      "returns": [
+        "0x51fe23"
+      ],
+      "calls": [
+        [
+          5373203,
+          "0x3ab7f0"
+        ],
+        [
+          5373239,
+          "0x3ab7f0"
+        ],
+        [
+          5373308,
+          "0x51f880"
+        ],
+        [
+          5373331,
+          "0x3ab7f0"
+        ],
+        [
+          5373375,
+          "0x3ab7f0"
+        ],
+        [
+          5373442,
+          "0x20e620"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3ab7f0",
+      "instructions": 32,
+      "returns": [
+        "0x3ab802",
+        "0x3ab829",
+        "0x3ab845",
+        "0x3ab852"
+      ],
+      "calls": [
+        [
+          3848236,
+          "0x36b130"
+        ]
+      ]
+    },
+    {
+      "entry": "0x20e620",
+      "instructions": 3,
+      "returns": [
+        "0x20e628"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x51fbb0",
+      "instructions": 103,
+      "returns": [
+        "0x51fbd5",
+        "0x51fbf8",
+        "0x51fce2"
+      ],
+      "calls": [
+        [
+          5372891,
+          "0x51f7a0"
+        ],
+        [
+          5372969,
+          "0x3ab7f0"
+        ],
+        [
+          5373074,
+          "0x3ab7f0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x51f880",
+      "instructions": 106,
+      "returns": [
+        "0x51f8cb",
+        "0x51f9b8",
+        "0x51f9ce",
+        "0x51f9e4"
+      ],
+      "calls": [
+        [
+          5372062,
+          "0x3ab7f0"
+        ],
+        [
+          5372131,
+          "0x3ab7f0"
+        ],
+        [
+          5372176,
+          "0x3ab7f0"
+        ],
+        [
+          5372284,
+          "0x3ab7f0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x36b130",
+      "instructions": 15,
+      "returns": [
+        "0x36b155",
+        "0x36b158"
+      ],
+      "calls": []
+    }
+  ],
+  "window_calls": {
+    "acquire": [
+      {
+        "pc": "0x51fc92",
+        "target": "0x3ab7f0"
+      }
+    ],
+    "release": [
+      {
+        "pc": "0x51fd7c",
+        "target": "0x51f880"
+      },
+      {
+        "pc": "0x51fd93",
+        "target": "0x3ab7f0"
+      },
+      {
+        "pc": "0x51fdbf",
+        "target": "0x3ab7f0"
+      },
+      {
+        "pc": "0x51fe02",
+        "target": "0x20e620"
+      }
+    ]
+  },
+  "reader_effects": [
+    {
+      "entry": "0x3ab7f0",
+      "private_stack_writes": [
+        {
+          "pc": "0x3ab806",
+          "memory": {
+            "base": "rsp",
+            "index": null,
+            "scale": 1,
+            "displacement": 32,
+            "size": 8,
+            "role": "w",
+            "rip_target": null
+          }
+        }
+      ],
+      "calls": [
+        [
+          3848236,
+          "0x36b130"
+        ]
+      ]
+    },
+    {
+      "entry": "0x36b130",
+      "private_stack_writes": [],
+      "calls": []
+    },
+    {
+      "entry": "0x20e620",
+      "private_stack_writes": [],
+      "calls": []
+    }
+  ],
+  "count_transition_calculations": [
+    {
+      "operation": "acquire lastfree",
+      "entry": {
+        "global": 319,
+        "page_sum": 319
+      },
+      "after_page": {
+        "global": 319,
+        "page_sum": 320,
+        "difference": -1
+      },
+      "after_total": {
+        "global": 320,
+        "page_sum": 320,
+        "difference": 0
+      }
+    },
+    {
+      "operation": "release full",
+      "entry": {
+        "global": 320,
+        "page_sum": 320
+      },
+      "after_page": {
+        "global": 320,
+        "page_sum": 319,
+        "difference": 1
+      },
+      "after_total": {
+        "global": 319,
+        "page_sum": 319,
+        "difference": 0
+      }
+    }
+  ],
+  "answer": "Page count is published before total count on acquire and release. Their equality is not maintained at every instruction. The complete intervening direct-call graph contains page unlink and reader-only pointer/base helpers, no callback/indirect dispatch. It does not establish absence of other-thread/asynchronous interference.",
+  "observation_requirement": "Bind bank identity, acquisition/release phase and coherent entry/return or stopped transition. Asynchronous separate count reads are not atomic; a one-count mismatch at an interior point is not sufficient evidence of persistent corruption.",
+  "arena_helper": "20E620 subtracts DWORD arena base01F83530 fromECX andreturnsEAX, no RNG or nativeallocation; statichelper doesnot prove runtimearena value.",
+  "limitations": [
+    "No original machine/native/live execution; transitions are source arithmetic, not captured events",
+    "Valid live slot/page, initialized bank, no underflow/overflow, stable table/handle identity, private stack disjointness and no interfering writes required",
+    "Direct callee graph cannot itself establish thread ownership, scheduling, asynchronous reentry, natural caller reachability or atomicity",
+    "Release original used!=0 gate is not positivity/valid-index checking; malformed negative/duplicate/free inputs are not asserted safe",
+    "Legacy namebinding capture receipt lacks terminal/exception fields; retained originalbytes are revalidated directly here, no new execution/live credit",
+    "Allwriter/list invariance, actual startup/arena binding, authored keys, naturalexhaustion/samekey ownership andwholeOV21 remainOPEN"
+  ]
+}

@@ -1667,3 +1667,73 @@ NEXT: awaiting the ARG ruling — if accepted, apply the three routes and
 publish the two pilot censuses. Standing limitation: transitive getter-alias
 consumer census remains unsupported/known debt. Queue otherwise empty for
 this lane; monitor the board.
+
+## 2026-10-01 — SWE2-STRUCT: ARG routes applied under the ruling
+
+FRONTIER ruled `SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001` DONE —
+**ACCEPT-WITH-CONDITIONS**: cite the in-body instruction per row, caller-side
+binding stays prose, rcx/rdx/r8/r9 only, zero-yield child combines not
+emitted, no retro-labelling. Applied:
+
+- `ActorDefinitionPayload`: `ARG rdx 0x0026C8C0` (cites 0026C8F7 `mov r15,rdx`
+  / 0026C95A `mov [rdi],rdx` → ActorManagerSlot +0x00). Census
+  `actor-definition-payload-accesses.tsv`: 7 accesses / 7 offsets / 1 fn —
+  the binder's own field reads, all base+0.
+- `AuthoredExpressionBlock`: `ARG rcx 0x0042FDB0` (cites 0042FDC1
+  `movzx ecx,[rcx+0x40]` + four `call 004314E0` on rcx+0x00..+0x30); size
+  UNRESOLVED → `AT LEAST 0x41` (the body's own reach). Census
+  `authored-expression-block-accesses.tsv`: 76 accesses / 21 offsets / 5 fns —
+  all rows `exposed` (the decoder family is widely-called), so reachability
+  evidence only, no width evidence.
+- `AuthoredExpressionRecord`: rides the parent's ARG through its declared
+  EMBED — 25 accesses / 6 offsets, all `exposed`. Registered.
+- `ActorDefinitionCountedU16Section` RELOFF child: 0 offsets under ARG — not
+  emitted, per condition 4.
+- `PaneListWidget0B68`: route adopted `ARG rcx 0x0029BE50` (cites the pool
+  allocator's handler argument 00296502). Verification run reproduces the
+  registered census as a near-superset (108 vs 21 offsets); registered file
+  stands.
+- `check_route_verb_against_image.py`: ARG operand now checked as a function
+  extent (`ARG VERBS NAMING NO FUNCTION` — silent zero-host typo guard). All
+  three rows pass.
+
+Gates: widths 0 mismatches; gap-debt TOUCHED=0 / AMBIGUOUS=2 / INHERITED=7 /
+UNMEASURED **408 rows / 23,371 B** (was 411/23,423 — the three censused types'
+gap rows moved to measured); types_index 0 errors; verb check 374 supported /
+1 baseline-contradicted (BattleUnit SLOTPTR, pre-existing) / ARG all resolved.
+
+NEXT: OV58D return still gated on ASTRA-REQ-SPEC-OV58D-ORDER-SWITCH-1001
+(ACTIVE under AUDIT-SPEC — dependency may clear soon). Seedable frontier
+closed; remaining UNMEASURED sits in unrouted types. Standing limitation:
+transitive getter-alias consumer census.
+
+## 2026-10-01 — SWE2-STRUCT: OV58D order-switch repair applied
+
+`ASTRA-RETURN-STRUCT-OV58D-ORDER-SWITCH-1001` — ASTRA's accepted packet
+(`_experiments/evidence/ov58d-order-switch/`, SPEC review ACCEPT) refuted my
+caller-cone's one-stage switch decode. Repaired additively (strike +
+correction, originals preserved):
+
+- `CALLER-CONE-0030E360-0930.md`: the `0x4049`/`0x404A → 002FDF18/5A →
+  r8b=0xF8/0xD9 → OUT OF CONTRACT` claims struck. Correct two-stage decode
+  recorded (selector byte `002FE54C+idx`, arm RVA `002FE534+4·sel` — verified
+  byte-wise here: 0x4049/4A → sel 1 → `002FDE7B`, a 29-byte local arm with no
+  call). Real status-arm domains: `0x4051–0x4070`/`0x4071–0x4090` → `id 0..31`.
+- `RESIDUE-BOUNDS-0930.md`: the "contract falsified twice" update struck;
+  net state = every identified caller passes `id ≤ 31`, the named reach
+  stands only as callee-level code fact (index unmasked).
+- Independent rechecks: selector/arm tables read from the image; `002FDE7B`
+  disassembled (no `0030E360` call — matches the packet).
+- Scope kept per the task: no generic `0030E360`/all-caller/lifetime safety
+  claim; if another unbounded caller is later found, its provenance goes into
+  the record first. Frozen vendored copy under `status-recursion-index-bound/
+  dependencies/` intentionally left (dependency preimage).
+- Consumers: FABLE's T3b named-reach exception and OPUS's bounded-arg use are
+  their own RETURN tasks; OPEN-QUESTIONS OV-5/OV-8 wording is FABLE's.
+- Also landed this round: `OPUS-REQ-STRUCT-AWNB-TYPES-1001` at `6bec973bb`
+  (types.tsv = HEAD + TS-2/TS-3; the 21-row CSV quoting rewrite reverted —
+  all cells unquoted byte-identical to HEAD, plain-split readers dominate).
+
+NEXT: publish the record repairs, finish the RETURN task. Seedable frontier
+closed; ARG routes committed at `05cf6d3b5`. Standing limitation: transitive
+getter-alias consumer census remains unsupported/known debt.

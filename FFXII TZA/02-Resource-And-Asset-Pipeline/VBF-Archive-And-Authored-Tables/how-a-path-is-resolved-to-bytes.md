@@ -366,3 +366,4 @@ Consumer record: [`_index/candidates/path-resolve-falsification-pass-1-0929/`](.
 
 - **Audio — CLIENT (1 edge).** 1 inbound (Audio bodies `00225BA0` call page-cited `0059EE90`). Substantive edges include `0059EE90` is called by `00225BA0`.
 - **Input — CLIENT (3 edges).** 3 inbound (Input bodies `0079FB10` call page-cited `00597970`, `00598100`, `0059D920`). Substantive edges include `00597970` is called by `0079FB10`; `00598100` is called by `0079FB10`; `0059D920` is called by `0079FB10`.
+- **Platform — SERVICE (1 edge).** 1 outbound (page-cited `001DADC0` call Platform bodies `005CC930`).

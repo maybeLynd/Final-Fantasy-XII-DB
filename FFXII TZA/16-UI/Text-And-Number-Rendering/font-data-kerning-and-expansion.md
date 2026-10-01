@@ -60,23 +60,23 @@ Census: [`census.py`](../../_experiments/evidence/font-kerning-and-expansion/cen
 **The spacing between particular letter pairs, and — in the Japanese, Korean and Chinese builds — the
 character sets of the subtitle, expansion and monster-name fonts.** The English font list requests
 kerning for its subtitle, `venus`, `square` and six `stf` fonts, and no `.fex` at all; the CJK lists request
-`.fex` for `fontex_expand`, `fontex_subtitle` and `fontmonster`. (The paired-kern path itself is
-**structurally inert in the shipped build** — §3: the loader stores a flat `map<rightCp, adjust>` while the
-only reader walks a nested `map<cur, map<prev, adj>>` that can never be populated; the authored pair data is
-unreachable.) What a `.fex` key names is not established (§7).
+`.fex` for `fontex_expand`, `fontex_subtitle` and `fontmonster`. (The paired-kern path is **populated but mis-keyed in the shipped build** — §3: the loader does build the
+nested `map<leftCp, map<rightCp, adjust>>` the reader walks, but with the two record fields in the opposite
+slots, so a lookup can only ever return the adjustment authored for the *reversed* pair, and only when the
+corpus carries one; the authored pair data is unreachable in practice.) What a `.fex` key names is not established (§7).
 
 ## 2. The layout
 
 ```struct KerPair base=record size=0x0C
-+0x00  u32       first        character code of the RIGHT glyph — the kerned glyph; the pair-map's outer key (0x41 'A', 0x20 ' ', ...)
-+0x04  i32       second       character code of the LEFT (preceding) glyph; the intended inner key — loaded, then dead-dropped by the shipped store
++0x00  u32       first        character code of the RIGHT glyph — the kerned glyph; the shipped writer's INNER key (0x41 'A', 0x20 ' ', ...)
++0x04  i32       second       character code of the LEFT (preceding) glyph; the shipped writer's OUTER key — the two fields sit transposed to the reader's query order (§3)
 +0x08  i32       adjust       spacing adjustment (-2, -1, 0 in the samples)
 ```
 
 The pair direction reads out of the consumer, not the record alone: `001FDDD0(font, prevKernCp, curKernCp)` searches the
 outer map by the **current** glyph's kern cp and the inner map by the **previous** glyph's — `kerMap[cur][prev]`. The
-writer keys the outer map by `first`, so `first` is the glyph being advanced now (the right element) and `second` is
-its predecessor. The corpus agrees: `us/font_venus` carries `{0x41 'A', 0x56 'V', -2}`-shaped records — `VA`, `WA`,
+writer keys the outer map by `second` and the inner by `first` (§3) — `kerMap[left][right]`, transposed to the query —
+so `first` is the glyph being advanced now (the right element) and `second` is its predecessor. The corpus agrees: `us/font_venus` carries `{0x41 'A', 0x56 'V', -2}`-shaped records — `VA`, `WA`,
 `YA`, `TA` and `T `, `V `, `W `, `Y ` are exactly the classic pairs.
 
 A `.ker` is nothing but these records to the end of the file.
@@ -107,20 +107,28 @@ completion `001B6080` → `001B5230`; **bit 1** → `001B5480` requests `<dir><n
 `001B6030` → `001B4C00` (`001B5024`–`001B5061`).
 
 **`.ker` (`001B5230`).** Finds the font by id; while the cursor is below the buffer end, reads `{first, second, adjust}` and calls `001FDC10(font, first, second, adjust)`, which
-stores `adjust` at `node+0x24` in the font's `+0x70` map **keyed by the record's first dword** (signed compare
-`001FDC45`/`001FDC61` of `edx` against `node+0x20`), **overwriting an existing pair** (`001FDC66`). The second
-record dword is passed in `r8d` — saved to the stack at `001FDC15` and **never read back**: the shipped store is a
-flat `map<u32 first, i32 adjust>` (verified at the allocator — `001FC9F0` requests `0x28`-byte nodes, links `0x20` +
-`pair<u32,u32>` 8 B). Then frees the buffer.
+stores into a **nested** `map<u32 second, map<u32 first, i32 adjust>>` at the font's `+0x70`: it spills `second`
+(`r8d`) to a stack slot (`001FDC15`) and passes the slot's address as the key of the find-or-insert
+`001FC420(font+0x70)` — the outer tree (`0x60`-byte nodes) is keyed by the **left** codepoint. The call returns
+`lea rax,[node+0x28]` (`001FC55C`), an embedded inner map (the `"EASTL map"` tag at `001FC487`), which `001FDC10`
+then walks comparing `node+0x20` against `first` (`ebx`, signed `001FDC45`/`001FDC61`): a hit stores `adjust` at
+`node+0x24`, **overwriting an existing pair** (`001FDC66`); a miss inserts through `001FC9F0` (`0x28`-byte nodes)
+and writes `+0x24` on the fresh node (`001FDCAF`). Then frees the buffer. *(Corrected 2026-10-01, SWE2-DATA, on
+[`font-kern-writer-nested-1001`](../../_index/candidates/font-kern-writer-nested-1001/README.md): this was published
+as a flat `map<first, adjust>` with `second` dead-dropped — OPUS's `OPUS-CON-FONT-KERN-WRITER-NESTED-0930`, on
+SWE2-ORACLE `08f4c0821` K1/K2, refuted that reading; this record re-verifies it instruction by instruction.)*
 
-**The read side expects a nested map the writer never builds.** The only kern reader is `001FDDD0` (sole caller
-`001E9780` ← `0017F8E0` ← the text walker's kern arm at `002AC52F`): it lower-bounds the same `+0x70` map by the
-**current** kern cp, then treats the found node's `+0x30`/`+0x40` as an **inner map's sentinel/root** and searches it
-by the **previous** kern cp — the intended structure is `map<u32 rightCp, {u32 pad; map<u32 leftCp, i32>}>` with nodes
-≥ `0x50` bytes. `001FDC10`/`001FC9F0` are the map's only writers (single-caller verified) and build `0x28`-byte flat
-nodes — the inner-map object can never exist, and `second` never reaches the tree. So on an outer hit `001FDDD0`'s
-inner walk reads past the node into adjacent heap; the authored two-codepoint pair adjustment is **structurally
-unreachable** in the shipped build — the kern term cannot return what the `.ker` files authored.
+**The read side walks exactly that nested map — but queries it transposed.** The only kern reader is `001FDDD0`
+(sole caller `001E9780` ← `0017F8E0` ← the text walker's kern arm at `002AC52F`, which passes the **current**
+glyph's kern cp `ecx = [rbx+0x20]`): it lower-bounds the `+0x70` outer map (sentinel `font+0x78`, root
+`[font+0x88]`) by the current kern cp (`r8d`), then searches the inner map embedded in the found node — sentinel
+`node+0x30`, root `[node+0x40]`, the same `node+0x28` object the writer's `001FC420` returns — by the **previous**
+kern cp (`r10d` = `edx`, which `001E9780` supplies as `[ [rcx+0x28] + 0x20 ]`), returning the inner node's `+0x24`.
+So the reader asks `kerMap[cur][prev]` — `kerMap[right][left]` — of a tree the writer filled as
+`kerMap[left][right]`. An authored adjustment can only come back when the corpus also carries the reversed record
+(`first == prev` and `second == cur`), and then it returns the **reversed pair's** adjust. The two-codepoint pair
+data the `.ker` files authored remains **unreachable-as-authored** in the shipped build — not because `second` is
+dropped, but because the writer and reader disagree on which field is the outer key.
 
 **`.fex` (`001B4C00`).** Finds the font by id; while the cursor is below the end, reads `key` and `count`, calls
 `001FDB90(font, key, count)` — which **refuses a key already present** (`001FDBE3`–`001FDBEF`) and otherwise
@@ -187,9 +195,9 @@ one shared ordered-map implementation — the same tree shape (`head +0x8`, key 
 
 ### The `001FDC10` exclusive subtree — all 7 members bound (SWE2-FRONTIER, followup queue)
 
-The `.ker` pair store `001FDC10` — find the record's first dword in `font+0x70`'s ordered map,
-overwrite `node+0x24` with `adjust` on a hit (`001FDC66`), else insert (the `r8d` middle field is
-passed but unread) — owns **7 frontier functions**:
+The `.ker` pair store `001FDC10` — find-or-insert the record's **second** dword (`r8d`, via its stack
+slot) in `font+0x70`'s ordered map through `001FC420`, then store-or-insert `first` → `adjust` in the
+returned inner map (`node+0x24` on a hit at `001FDC66`, `001FC9F0` on a miss) — owns **7 frontier functions**:
 the EASTL ordered-container insert layer beneath it. The family is a 2×2 — {unique,
 hint-aware} × {formed-node, copy-constructed pair} — over the same `+0x8`-headed tree keyed at
 `node+0x20`. Interior cites are one instruction inside each declared extent
@@ -864,7 +872,7 @@ record fields.** The accessor domain is closed:
 **Consequence:** the `15/36`, `25/48`, `20/20`, `40/40` pairs are a
 legacy-format field carried verbatim — their names cannot be established
 from TZA code because TZA never consumes them (the same vestigial pattern
-as the structurally unreachable `.ker` pairs and the orphaned us `.fex`
+as the mis-keyed `.ker` pairs (§3) and the orphaned us `.fex`
 files). They remain useful corpus provenance — the authored values still
 correlate with cell height — but no semantic role may be claimed.
 
@@ -1098,3 +1106,11 @@ Corrected 2026-09-27 (FABLE BQ-23 tier-6b, `FABLE-REQ-SWE2EC7-BQ23-RELABEL-AND-T
 
 `001FBFC0` (155 B) is a font-data body - `001EDF00` single call plus two vcalls, `008C2A40`. Interior anchor `001FBFEE` (a `001EDF00` call).
 
+
+`00330190` (138 B) is the low bit-lane slot write `003304A0` dispatches: `ecx & 0xF` selects the slot, `rdx & ~0xF` stores into the `022C6CA0` row table after `0026C880` resolves, and bit `0x10` clears in the matching `022CBE48`-region entry - a fully-clear entry additionally drops bit `0x08` on its `00263FF0` record's `+0x11` byte, and `0032F1B0` fires on the occupied-to-empty transition..
+
+Interior anchor `003301C8` (function `00330190`).
+
+`00330220` (138 B) is the high bit-lane sibling of `00330190`: identical `ecx & 0xF` slot selection and `rdx & ~0xF` store but into the `022C6CC8` row table via `0026C8A0`, clearing bit `0x20` of the `022CBE48`-region entry with the same `00263FF0` `+0x11` cleanup and `0032F1B0` empty-transition call - the second bit-lane `003304A0` drives..
+
+Interior anchor `00330258` (function `00330220`).

@@ -1,0 +1,65 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "5f735f759cb7e615e962a4fabd5493f6e02f6f3116aa5590948d325871ec5424",
+  "positive_producer_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+  "cases": [
+    {
+      "name": "failed-capture",
+      "exit": 1,
+      "diagnostic": "required capture status failed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "de864c21e46daf7f3602e4d833d35aa034a07b61f1c843266a055a7c931260d7",
+      "terminal": true,
+      "exception": null,
+      "reused_actual_run": true,
+      "prior_receipt": "controls-01/failed-capture/receipt.json",
+      "prior_receipt_sha256": "dd08a1077f00fb236cc55e2b47c1a1b65cb24cb536f9c52a80d38821f18fbe2a",
+      "correction": "Retained hash guard refuses before retained-status gate; original failedcontrol1 diagnostic expectation preserved"
+    },
+    {
+      "name": "failed-retained-capture",
+      "exit": 1,
+      "diagnostic": "retained input changed",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "94d2972603fd8b17b0f73e46f4b134447cbac212945d39d5ca6fe65647fee708",
+      "terminal": true,
+      "exception": null,
+      "reused_actual_run": true,
+      "prior_receipt": "controls-01/failed-retained-capture/receipt.json",
+      "prior_receipt_sha256": "d496bbfe95d005d402b5a3a74880aef8faea9cb610429e275ba90ba6d6ca08f3",
+      "correction": "Retained hash guard refuses before retained-status gate; original failedcontrol1 diagnostic expectation preserved"
+    },
+    {
+      "name": "missing-source",
+      "exit": 1,
+      "diagnostic": "source-01.json",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "646fa3151484f7c9a72f64afe1a223e9e9b6f6e886c4ce4bab9189bccc23cbbf",
+      "terminal": true,
+      "exception": null
+    },
+    {
+      "name": "coherent-page-head-mutation",
+      "exit": 1,
+      "diagnostic": "original byte mismatch",
+      "diagnostic_matched": true,
+      "refused_result_absent": true,
+      "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0a9b8bb9a03f4b02d55bf4f9fe32f534663368456c186411c568b5368029aa95",
+      "terminal": true,
+      "exception": null
+    }
+  ],
+  "count": 4,
+  "limits": "Disposable CLI evidence mutations only; no FF12 native/game, no original-code execution or live observation"
+}

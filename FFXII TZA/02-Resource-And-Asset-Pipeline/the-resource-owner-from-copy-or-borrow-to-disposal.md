@@ -225,6 +225,7 @@ Interior anchor `003EE313` (function `003EE2D0`).
 - **Audio — CLIENT (1 edge).** 1 inbound (Audio bodies `003A1650` call page-cited `00369800`). Substantive edges include `00369800` is called by `003A1650`.
 - **CombatAction — CLIENT (1 edge).** 1 inbound (CombatAction bodies `002FC3C0` call page-cited `0024F410`). Substantive edges include `0024F410` is called by `002FC3C0`.
 - **Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `0050DDA0` call page-cited `00369800`). Substantive edges include `00369800` is called by `0050DDA0`.
+- **Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `0050DDA0` call page-cited `00369800`). Substantive edges include `00369800` is called by `0050DDA0`.
 ## Falsification pass 1 — 2026-09-29 (OPUS): every structural clause survives
 
 **Attack.** The structural clauses of §1-§5 became checks that fail if the shipping image says otherwise. Script:

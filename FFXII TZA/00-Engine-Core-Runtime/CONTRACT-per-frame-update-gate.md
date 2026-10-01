@@ -402,6 +402,7 @@ shared leaves, not shared ownership of the gate.
 
 **Spawn_Encounter_Lifecycle — CLIENT (SWE2-EC7 batch-150).** `003148F0` is likewise called by that layer's `00233780` - one more caller edge through the same shared check.
 - **RNG_Random_Selection — MECHANICAL (1 edge).** 1 call from page-cited bodies into shared RNG_Random_Selection plumbing (`RNG_MT19937_NextU32_Thunk` (00379CD0)) - the helpers' general call surface, not a RNG_Random_Selection relationship of this page's subjects.
+- **Combat — MECHANICAL (1 edge).** 1 inbound (Combat bodies `003206E0` call page-cited `ActorWork_GetBattleUnitRaw` (00263E30)) - shared-helper call surface, not a Combat relationship of this page's subjects.
 ## Interior citation — frontier hub `002E65A0` (2026-09-18, SWE2-EC7)
 
 `002E65A0` — 346 B, 8 A-measured callers; the drain sweep the update gate brackets. Interior
@@ -420,7 +421,7 @@ full "flush then signal" sequence the gate's callers expect.
 
 - **Removal can be mark-only.** `002EAEB0` sets `+0x18` bit `0x04` (`002EAEC4`) and returns, with no other write or call, when `+0x18` bit `0x02` and `+0x19` bit `0x04` are both clear. Otherwise it advances the stamp, unlinks the record and retires it. `+0x19` bit `0x04` bypasses the mark-only arm; its meaning is not inferred.
 - **Completion of a marked record.** The completion `002E4D20` unpins first. A record marked by removal (`+0x18` bit `0x04`) gets bit `0x08` and skips registration (`0041E580`). `002EA6E0` returns 0 early under that bit, and the callback then sets bit `0x02` and retires the record. Without the mark, the follow-up allocation may return 1, so the callback does not always set bit `0x02`. A successful follow-up sets it at the `002E60F0` tail.
-- **This gate's drain releases them.** `002E6D60` enters the cleanup only when `002E6900(0)` returns 0 (`002E6D66`/`002E6D6B`) and a selected retired record has a non-zero handle `+0x10` (`002E6DAC`). `+0x18` bit `0x08` (`002E6DB3`) or `+0x19` bit `0x04` (`002E6DB9`) skips the unregister `0041E490` (`002E6DDD`) but not the release `002E9360` (`002E6DEA`). `002E9360` requests the child and secondary releases, calls `00369800` on the handle (`002E93E1`, `002E93F2`), clears the handle after it returns (`002E93F7`) and recycles the record. A record with a zero handle bypasses that call.
+- **This gate's drain releases them.** `002E6D60` enters the cleanup only when `002E6900(0)` returns 0 (`002E6D66`/`002E6D6B`) - *(corrected 2026-10-01, OPUS, on ASTRA's lane-drain correction, re-read at the bytes: which is every normal return, so that test does not gate on IO completion)* and a selected retired record has a non-zero handle `+0x10` (`002E6DAC`). `+0x18` bit `0x08` (`002E6DB3`) or `+0x19` bit `0x04` (`002E6DB9`) skips the unregister `0041E490` (`002E6DDD`) but not the release `002E9360` (`002E6DEA`). `002E9360` requests the child and secondary releases, calls `00369800` on the handle (`002E93E1`, `002E93F2`), clears the handle after it returns (`002E93F7`) and recycles the record. A record with a zero handle bypasses that call.
 - **The stamp stays 16-bit.** `INC dword +0x24` then a clear of `word +0x26` is `(old + 1) & 0xFFFF`, as the name-binding page already records; this corroborates it.
 
 **Open.** The producer of `+0x19` bit `0x04`, any natural overlap with a pending read, `00369800`'s and the allocator's own effects, real delivery timing, list progress, and OV-21/OV-25 as wholes. The `movsxd` completion argument and the low-32-bit list comparisons do not establish 64-bit pointer placement.
@@ -1614,7 +1615,7 @@ Interior anchor `002E6F3B` (function `002E6EB0`).
 
 Interior anchor `002E9938` (function `002E9920`).
 
-`002E6900` (378 B) is the list append `002E65A0`/`002E6D60` call: walks `0215FD90`'s `+8` links to the tail (or `rbx` when the head is empty), then `0020E600` resolves, `0041E490`/`00369800`/`002E9470` build the node and `002E6A80` links it - the per-frame gate's tail insert.
+`002E6900` (378 B) ~~is the list append `002E65A0`/`002E6D60` call: walks `0215FD90`'s `+8` links to the tail (or `rbx` when the head is empty), then `0020E600` resolves, `0041E490`/`00369800`/`002E9470` build the node and `002E6A80` links it - the per-frame gate's tail insert.~~ *(corrected 2026-10-01, OPUS, on ASTRA's lane-drain correction, re-read at the bytes: it is the lane DRAIN `002E65A0`/`002E6D60` call. From the tail of `0215FD90`'s list it walks back through `[node]`; for each of the 32 lanes set in both `+0x14` and `+0x1C` with a non-zero handle at `+0x50 + 4*lane` it resolves the handle (`0020E600`, `002E6982`), unregisters it (`0041E490`, `002E698C`), frees it (`00369800`, `002E6994`) and clears the lane and its bits; it unlinks the node and, when `+0x18` and `+0x14` are both 0, retires it through `002E9470` (`002E69E8`); it repeats while its argument is non-zero, then runs `002E6A80` on nodes whose word `+0x22` is negative. Every normal return is 0 (`002E6A70`) - not an IO-completion status)*.
 
 Interior anchor `002E6982` (function `002E6900`).
 
@@ -1650,7 +1651,7 @@ Interior anchor `0028CDEF` (function `0028CD80`).
 
 Interior anchor `002E93B6` (function `002E9360`).
 
-`002EAFA0` (135 B) is the bit-indexed mark-and-relink `002E9360` runs 32 rounds of and `002E3F00` also calls: `edx = 1 << arg2` tests `dword[+0x2C]`; absent there but present in `+0x34 | +0x28 | +0x24` it is set in `+0x2C`, and when it was also in `+0x24` the node's `[+0x10]` entry unlinks from its doubly-linked list and re-links at the head of `0215FD90` - the per-slot flag-set the retire sweep performs.
+`002EAFA0` (135 B) is the bit-indexed mark-and-relink `002E9360` runs 32 rounds of and `002E3F00` also calls: `edx = 1 << arg2` tests `dword[+0x2C]`; absent there but present in `+0x34 | +0x28 | +0x24` it is set in `+0x2C`, and when it was also in `+0x24` the node's `[+0x10]` entry unlinks from its doubly-linked list and re-links at the head of `0215FD90` - the per-slot flag-set the retire sweep performs. *(Qualified 2026-10-01, OPUS, on ASTRA's lane-stale-release, ACCEPTED by SWE2-AUDIT-SPEC (`_index/candidates/auditspec-review-astra-lane-stale-release-1001/REVIEW.md`), re-read at the bytes: a lane already set in `+0x2C` returns at `002EAFB2` -> `002EB026` before any write or call, so a stale-owner completion (`002E4E50`'s stale/null-owner arm passes the same sub-record and lane here) neither adds nor removes the node's sweep membership; a lane not yet in `+0x2C` but pending or masked and not loaded (`+0x24` clear) is marked without an enqueue. `002EB890` below only adjusts the lane WORD at sub-record `+0xE0 + 2*lane` - no call, no queue or global write - and sits on the valid-owner branch, so it cannot enqueue either. The node's prior queue membership, other relink producers, the scheduler and callee effects stay OPEN: no leak, safety or eventual-release claim follows.)*
 
 Interior anchor `002EAFD2` (function `002EAFA0`).
 
@@ -1778,7 +1779,7 @@ Interior anchor `00241C73` (function `00241BF0`).
 
 Interior anchor `002BEA80` (function `002BEA40`).
 
-`002E6A80` (141 B) is the 32-bit flag sweeper on the update gate's list node: each set bit shared by the two masks calls `002E6E30` for that lane, the node is then unlinked from its doubly-linked list, and `002E9470` runs when no flags remain - the drain-and-detach pass the per-frame gate applies to spent entries.
+`002E6A80` (141 B) is the 32-bit flag sweeper on the update gate's list node: each set bit shared by the two masks calls `002E6E30` for that lane, the node is then unlinked from its doubly-linked list, and `002E9470` runs when ~~no flags remain~~ *(corrected 2026-10-01, OPUS, on ASTRA's lane-drain correction, re-read at the bytes: the loaded mask `+0x24` and the mask `+0x28` are both 0 (`002E6AED`/`002E6AF0`); the pending mask `+0x34` is not tested)* - the drain-and-detach pass the per-frame gate applies to spent entries.
 
 Interior anchor `002E6AC1` (function `002E6A80`).
 

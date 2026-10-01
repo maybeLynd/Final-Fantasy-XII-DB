@@ -1,0 +1,11 @@
+CHECK 002E6982 call 0x20e600 -> ok
+CHECK 002E698C call 0x41e490 -> ok
+CHECK 002E6994 call 0x369800 -> ok
+CHECK 002E69E8 call 0x2e9470 -> ok
+CHECK 002E6A70 xor eax, eax -> ok
+CHECK 002E6AED mov eax, dword ptr [rdi + 0x28] -> ok
+CHECK 002E6AF0 or eax, dword ptr [rdi + 0x24] -> ok
+ALREADY `002E6900` (378 B) is the list append `002E65A0`/`
+ALREADY `002E6D60` enters the cleanup only when `002E6900(
+ALREADY and `002E9470` runs when no flags remain
+FAILS 0

@@ -1,0 +1,8 @@
+{
+  "field_path": "Database/FFXII TZA/_types/fields.tsv",
+  "field_file_sha256": "0f298f58e6b405f199a413e73425611657feb2812a3e7e8cabc19a0156c8c3b2",
+  "row": "RenderStrideC0Element\t0x094\t4\tskeletonRef\tuint32\tTHE HOTTEST FIELD, 31 accesses, and always the same shape: `mov ecx, [elem+0x94]` then `call 0020E600` ImageAddress_ResolveRuntimePointer, whose return is null-tested and used as the object for eleven distinct consumers. One of them, 003E3C30 Skeleton_ResetConfiguredAdditiveBoneMatrices, walks the target as a skeleton - decoding its +0x88 to an index list, its +0x8C as the count and its +0x78 to a 0x290-stride bone array, resetting a 4x4 at +0x230 of each. So this is a 32-bit relative pointer to a skeleton, established by what the consumer DOES and not by its name. NOTE, 2026-09-19: the constructor 003721E0 does NOT initialise this field, though it initialises the other five relative pointers to encoded null. So +0x94 is set by whatever attaches a skeleton to the row, and this census found no writer for it at all - an open question, not an absence.\tSIGNATURE RESOLVED\tPROVEN\texe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "access_table_path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/render-stride-0e-lement-accesses.tsv",
+  "access_table_sha256": "e145cfd70776c460f66c343b9053cd3657fd7a8cabeb04d4317daadf4dff2edd",
+  "limits": "Read-only currentpreimage; oldcensus note stays historical, newpublisher/store-origin question stillneedsreview"
+}

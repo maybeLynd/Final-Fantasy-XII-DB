@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov21-page-selection-invariant\control.py", line 33, in <module>
+    if r.returncode==0 or not row['diagnostic_matched'] or not row['refused_result_absent']:raise RuntimeError('control not discriminating '+name)
+                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: control not discriminating failed-retained-capture

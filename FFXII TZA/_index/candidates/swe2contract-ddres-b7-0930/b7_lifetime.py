@@ -19,7 +19,7 @@ Run: python -B b7_lifetime.py   (FAILS 0)
       readers (the binders copy it into slot +6, the tagged access paths compare it). Range 00369000..0036E000,
       register+displacement forms only
   R1  register state at HEAD of the rows the Limits section cites: J-C / CD-2 / BW-2 / OV-24 SUPERSEDED, OV-25 / OV-26
-      ANSWERED, OV-27 / OV-28 NOT A QUESTION, SD-166 OPEN (answered in OPUS's record, row not yet incorporated)
+      ANSWERED, OV-27 / OV-28 NOT A QUESTION, SD-166 ANSWERED (incorporated at HEAD by OPUS `b3f5172c9`)
   A1  OPUS's SD-166 record is tracked and states the answer the note cites
 """
 import hashlib, io, os, re, struct, subprocess, sys
@@ -144,7 +144,7 @@ check("C1 the +0x60 word is a counter the allocation paths increment", inc == [0
 oq = subprocess.run(["git", "show", "HEAD:Database/FFXII TZA/_index/OPEN-QUESTIONS.md"], capture_output=True,
                     cwd=DB).stdout.decode("utf-8", "replace")
 want = {"J-C": "SUPERSEDED", "CD-2": "SUPERSEDED", "BW-2": "SUPERSEDED", "OV-24": "SUPERSEDED", "OV-25": "ANSWERED",
-        "OV-26": "ANSWERED", "OV-27": "NOT A QUESTION", "OV-28": "NOT A QUESTION", "SD-166": "OPEN"}
+        "OV-26": "ANSWERED", "OV-27": "NOT A QUESTION", "OV-28": "NOT A QUESTION", "SD-166": "ANSWERED"}
 for rid, w in want.items():
     m = re.search(r"^\|\s*%s\s*\|(.*)$" % re.escape(rid), oq, re.M)
     last = m.group(1).rstrip().rstrip("|").split("|")[-1] if m else ""

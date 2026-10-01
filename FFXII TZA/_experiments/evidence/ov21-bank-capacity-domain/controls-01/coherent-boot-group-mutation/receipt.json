@@ -1,0 +1,12 @@
+{
+  "name": "coherent-boot-group-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "88753d00c73fa86f17614622c94bf15904b5a80105ea896f12c90dfc8671401d",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "1306eeb1c7a9d9bcd27f181b55ada3e47d2b5da216d70d8bcd301cde308bb337",
+  "terminal": true,
+  "exception": null
+}

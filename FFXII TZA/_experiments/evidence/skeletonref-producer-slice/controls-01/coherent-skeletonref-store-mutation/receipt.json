@@ -1,0 +1,12 @@
+{
+  "name": "coherent-skeletonref-store-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "8ab56e71546eba15dab211245c1f55a40cd086cfb212815d78e5123ec8445fd9",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "3d74ea1c5bb9d59faa37fd78b42bb4f4a33b3927f88900850196e98516973277",
+  "terminal": true,
+  "exception": null
+}

@@ -326,7 +326,12 @@ reader: still not found" predate the reader section below (FABLE, 2026-09-25), w
 *Citation spellings (R5), 2026-09-14 (FABLE):* these crossings become reportable once citations written 0x... or FUN_... count (R5); tier 2: ledger names, sizes and `edges.tsv`; no body read for this note.
 
 - **CoreRuntimeScheduling — CLIENT.** `ResourcePath_Init` (2,831 bytes), which this page cites, is called from the 978-byte core start-up root.
-
+- **ActorEntity — CLIENT and SERVICE (10 edges).** 3 inbound (ActorEntity bodies `0037B4D0` call page-cited `0031C250`, `002EB7A0`, `002ED910`); 1 outbound (page-cited `0031C250` call ActorEntity bodies `ActorWork_GetBattleUnitRaw` (00263E30)).
+- **Gameplay — SERVICE (3 edges).** 3 outbound (page-cited `0037B4D0`, `0031C250` call Gameplay bodies `BattleEncodedId_IsValidForClass` (00322C50), `WorldActor_GetDefinitionByte12OrMinus1` (002E9C00), `ActorHandle_GetPrimaryFormulaResourceByte26` (00321380)).
+- **Movement — SERVICE (11 edges).** 4 outbound (page-cited `0037B4D0` call Movement bodies `00263560`, `002681D0`, `Actor_SetDesiredMovementHeading` (0026A0D0)).
+- **Party — SERVICE (2 edges).** 2 outbound (page-cited `0031C250`, `0037B4D0` call Party bodies `PartyRoster_GetActorBySlot` (00263750), `PartyRoster_IsFourSlotIndex` (002647C0)).
+- **Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `003466A0` call page-cited `0036F0F0`).
+- **WorldAreaField — SERVICE (2 edges).** 2 outbound (page-cited `0037B4D0` call WorldAreaField bodies `00377A90`, `00377DB0`).
 ## The `002E60F0` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
 `002E60F0` (~62 B) — `dword[rcx]`-keyed table op (`002E60FA`).

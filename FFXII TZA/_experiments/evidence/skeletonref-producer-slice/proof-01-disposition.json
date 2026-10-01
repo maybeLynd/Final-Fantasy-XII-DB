@@ -1,0 +1,7 @@
+{
+  "status": "INVALID_PRODUCER_ORDER",
+  "driver_sha256": "fe986cc25949b169ef7cfd6b728fe5a6bdea0511c01abeb8ab66c9bb2a50daca",
+  "raw_result": "result-01.json",
+  "cause": "Retained wrapper/invocation/EXE metadata gate was after semantic output write. Actual gate passed in run1, but unsafe output procedure invalidated before any publication/consumer delivery. Earlier originalbyte/hash gates had passed; no FF12/live claim relied on it.",
+  "correction": "Gate moved before sourcepopulation/semantic result; currentproof2 required. Originaldriver/result/receipt immutable."
+}

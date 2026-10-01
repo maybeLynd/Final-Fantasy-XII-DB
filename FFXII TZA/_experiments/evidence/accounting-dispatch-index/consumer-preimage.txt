@@ -1,0 +1,25 @@
+The narrowing above left one question: what is `[rec+0x17]`'s range? `0036C5D0` answers it directly,
+because that function **takes the new index as an argument** and compares it against the record's
+current one (`0036C5FD  cmp eax, r8d`). So the callers give the range.
+
+| callee | call sites | literal `edx` | computed |
+|---|---:|---|---:|
+| `0036C5D0` | 5 | **1** at two sites | 3 |
+| `0036C620` | 2 | **1** at one site | 1 |
+| `00369860` | 7 | **0** at all seven | 0 |
+
+**Every literal is 0 or 1.** And the four computed sites forward a caller's parameter rather than
+deriving a wide value — `FUN_003AB910` is the clearest: `test cl, 3` / `setne r8b` / `cmp r8d, 1`,
+then `jmp 0036C5D0` when it is 1 and `jmp 0036C620` when it is not. **A boolean dispatch.**
+
+### So the accounting "array" is the two dword halves of the qword at `022D8E10`
+
+Index 0 is skipped at `00369B1F` (`test al, al` / `je`), index 1 writes `022D8E14`, and the
+initializer's `qword [022D8E10] = 0` at `00369DC5` zeroes both at once — which is exactly why the
+initializer writes a qword there and dwords elsewhere. **`022D8E18` is element 2 and is never
+reached.** The current-category byte is safe, `022D8E1C`, `022D8E20` and `022D8E28` are safe, and
+**this page's scalar model stands.**
+
+The category pushed onto the selection stack (3–18, measured above) and `[rec+0x17]` (0 or 1) are
+**different value spaces**, which is what the narrowing suspected and could not yet show.
+

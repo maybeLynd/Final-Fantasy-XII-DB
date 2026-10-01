@@ -1,0 +1,56 @@
+{
+  "parent_publication_task": "ASTRA-PUBLISH-SKELETONREF-PRODUCER-SLICE-1001",
+  "parent_state_at_read": "frozen producer-valid, publicationWAITING; NOT independentacceptance",
+  "parent_manifest_sha256": "8cb0df4be7349c2523018eccfe053e409ce6898a07c7a6949644b6dfd1a4212e",
+  "retained_files": [
+    {
+      "path": "source-01.json",
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "path": "capture.py",
+      "sha256": "e630c32a115a4c431d573fd36ec59c35ca7b0087d9048b9d405e33c5b2655837"
+    },
+    {
+      "path": "capture-01.status.json",
+      "sha256": "13e0f34391b2c476588733c6ac1030284db5bef79c1d831e367d0b28f87b5d76"
+    },
+    {
+      "path": "capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "8cb0df4be7349c2523018eccfe053e409ce6898a07c7a6949644b6dfd1a4212e"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    },
+    {
+      "path": "retained/capture.py",
+      "sha256": "cd59a93886c6aeedc6c07ba44cf778d9e5f19d871660bf4791b2aaee57fade1b"
+    },
+    {
+      "path": "retained/capture-01.status.json",
+      "sha256": "45a087db48e31b3f9cba16547d9433b77942b46921c79e6d97eb307e34bf4e5c"
+    },
+    {
+      "path": "retained/capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "retained/capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/manifest.json",
+      "sha256": "57ff5303f24bd3451904cccf600210613ce097d295173f840a70fc30f0f70923"
+    }
+  ],
+  "limits": "Exactfrozenlocal source input reused; no inventedcommit/nativeevidence. Publishafterparentpublication or preservependingstatus."
+}

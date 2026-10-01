@@ -878,3 +878,4 @@ The two loading loops this page cites, `0022A770` and `0022BC20`, are the field 
 - **Save_Load_Settings — CLIENT (1 edge).** 1 inbound (Save_Load_Settings bodies `002EF300` call page-cited `0032E620`). Substantive edges include `0032E620` is called by `002EF300`.
 - **Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `0050DFE0` call page-cited `0032E620`). Substantive edges include `0032E620` is called by `0050DFE0`.
 - **UI — SERVICE (1 edge).** 1 outbound (page-cited `0022A770` call UI bodies `00254E50`). Substantive edges include `0022A770` calls `00254E50`.
+- **Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `0050DFE0` call page-cited `0032E620`). Substantive edges include `0032E620` is called by `0050DFE0`.

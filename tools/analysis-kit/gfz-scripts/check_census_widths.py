@@ -619,6 +619,14 @@ CENSUS = {
     "PrimitiveRendererD3D11": "primitive-renderer-d3d11-accesses.tsv",
     "PShaderPassStateD3D11": "p-shader-pass-state-d3d11-accesses.tsv",
     "PPostEffectBase": "p-post-effect-base-accesses.tsv",
+    # ARG-route censuses (SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001,
+    # ACCEPT-WITH-CONDITIONS): the object is the named argument register at the
+    # named function's entry. AuthoredExpressionRecord rides its parent's ARG
+    # through the declared EMBED; the RELOFF child ActorDefinitionCountedU16Section
+    # yielded zero offsets and is deliberately unregistered.
+    "ActorDefinitionPayload": "actor-definition-payload-accesses.tsv",
+    "AuthoredExpressionBlock": "authored-expression-block-accesses.tsv",
+    "AuthoredExpressionRecord": "authored-expression-record-accesses.tsv",
 }
 
 

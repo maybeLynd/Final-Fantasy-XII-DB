@@ -82,6 +82,24 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-CONTRACT (fixed; not renamed).
+<!-- P22D-RESUME -->
+- **Session 2026-10-01 (PASS22-DEBT, FRONTIER-REQ-SWE2-CONTRACT-PASS22-DEBT, P2).** The routed 597-pair
+  six-folder worklist (00/01/02/24/25/26) is fully dispositioned: fresh `audit_crossrefs.py` reports
+  **0 UNACCOUNTED NEIGHBOUR** on all 597 pairs and 0 on the wider six-folder surface (31 post-seeding
+  graph-churn pairs dispositioned the same way). Method: 34 FALSE-SUBJECT rows; ~120 GENUINELY-IRRELEVANT
+  rows with per-pair mechanism notes (dominant subjects body-read via `disasm_fn.py` — shared accessors,
+  log sink, encoded-id validators, RNG thunks); cross-subsystem neighbour bullets with CLIENT/SERVICE/
+  MECHANICAL labels on ~100 pages; ~560 registry rows tagged `SWE2-CONTRACT 2026-09-30/10-01`.
+  `pass22-tripwires.tsv` regenerated (1,330 rows). Audit log entry appended.
+  - **PUBLISHED `de4492e21`** (43 files: ~100 bullet docs, 528 registry rows, tripwires, AUDIT-LOG, this file);
+    board task finished 2026-10-01 with result_refs; `SWE2CONTRACT-INCORP-RATIFIED-0930` finished the same round
+    (children already DONE; dashboard remainder landed by FRONTIER `abe576f39`).
+    `AUDITSEM-REQ-CONTRACT-REGISTRY-ADDRESSERS-0930` finished — FRONTIER's `18bf01b79` applied OPUS's variant-A
+    correction while the task sat parked.
+  - **Exact next action:** finish the routed narrowing trio (RC-RESTATE-0930, RC-NARROWINGS-0930,
+    DDRES-B6-NARROWING-0930 — all applied at HEAD/`c282e703e`-carried, pending one commit for the 9 page files),
+    then the READY queue (AUTO-INCORP takebacks2; DD-RESIDUE-CLOSURE-0929 87 pages; then P3s: RC13-CLAIMS-ROW,
+    DDRES-B7-R1, B20-Z1-CONTROL).
 <!-- AWN-A-RESUME -->
 - **Session 2026-10-01 (AWN wave A).** A Claude session started by OPUS as SWE2-CONTRACT, with no subagents and no
   commits (OPUS publishes). Board task `SWE2CONTRACT-AWN-WAVE-A-1001` (research): added rev 44490, claimed 44491,

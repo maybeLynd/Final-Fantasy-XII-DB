@@ -1336,3 +1336,7 @@ Interior anchor `002B6B17` (the `002B69B0` call).
 `00402D20` (138 B) is the row-link builder `002B7460` calls: for each of `r8d` source rows at `rsi + 0x30` stride it runs `00402C30` on the `0x70`-stride destination record and threads the result onto the `+0x60` next / `+0x68` prev chain, returning the list head - the map screen's record-list construction half, paired with `00402DB0`'s mask-filtered walk.
 
 Interior anchor `00402D60` (function `00402D20`).
+
+`00402C30` (235 B) is the per-row constructor `00402D20`'s list build calls for each source row: the `0x30` header copies in, a live `+0x10` string resolves through `0029CD00` into the `+0x48`/`+0x4A` extents, `003BF520(+0x1C, +0x1E)` allocates the row into `+0x40`, the `+0x60`/`+0x68` links clear for the caller's threading, and byte `+2 == 1` stamps the `+0x30`..`+0x38` extent quad with `+0x38` at 0.75 - the record-construction half of the map record-list pair..
+
+Interior anchor `00402C7A` (function `00402C30`).

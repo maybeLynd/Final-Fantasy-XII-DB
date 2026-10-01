@@ -312,6 +312,7 @@ row's own caveat (12 of 40 sampled, codecs unread) stands. This is physical acce
 - **Script_VM_Native_Bridge — CLIENT and SERVICE (4 edges).** 3 inbound (Script_VM_Native_Bridge bodies `0034BA00`, `0033FED0`, `0034E340` call page-cited `00229E40`, `00473E80`); 1 outbound (page-cited `0034E340` call Script_VM_Native_Bridge bodies `VMValueStack_PopInt32CoerceFloat32` (00267E10)). Substantive edges include `00473E80` is called by `0034E340`; the remaining edges run through shared helpers the page cites.
 - **UI — MECHANICAL (2 edges).** 2 UI-side calls into shared helper(s) the page cites (`00229E40`) - the helpers' general call surface, not a UI relationship of this page's subjects.
 - **WorldAreaField — CLIENT (1 edge).** 1 inbound (WorldAreaField bodies `00379A10` call page-cited `002DF980`). Substantive edges include `002DF980` is called by `00379A10`.
+- **Script_VM_Native_Bridge — CLIENT and SERVICE (4 edges).** 3 inbound (Script_VM_Native_Bridge bodies `0034BA00`, `0033FED0`, `0034E340` call page-cited `00229E40`, `00473E80`); 1 outbound (page-cited `0034E340` call Script_VM_Native_Bridge bodies `VMValueStack_PopInt32CoerceFloat32` (00267E10)). Substantive edges include `00473E80` is called by `0034E340`; the remaining edges run through shared helpers the page cites.
 ## The `0067A480` exclusive subtree — all 3 members bound (SWE2-FRONTIER, followup queue)
 
 `0067A480` (702 B) — a Phyre-side worker/init: `0067A9B0`/`0067A350`

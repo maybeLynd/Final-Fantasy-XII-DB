@@ -434,7 +434,9 @@ that descriptor and the format bits from the node's slot (`002D944A`, `002D946D`
 `+0x18` at `002437B9`). An atlas whose bit 7 is clear is left out of the next layout pass. Its eight direct call sites
 pass `k` = 1 (six sites), 0 (`0025290D`) or 2 (`00252965`). Every immediate write of the bit in `0027F5D0`–`002D7600`
 (29 sites) follows a `0024A5A0` find-by-name, which returns null on a miss (`0024A5E4`), unlike `0024A610`. So the
-fullscreen arm that clears bit 7 of five named atlases drops them from the layout until message 18 sets it again.
+fullscreen arm that clears bit 7 of five named atlases drops them from the layout until message 18 sets it again
+(the fullscreen proc's arm at `0027F7DA`, or the config screen's `00281E00`; `00280DE0` and `002D70F0` also clear
+some of the five — per `auditspec-review-ddres-b6-0930`).
 **Not claimed:** what `0024AF50` emits, when the layout pass runs relative to a draw, or that no other code reads the
 bit. The sweep sees immediate operands only, and `0024A710` itself reads the flags through a register mask.
 
@@ -740,3 +742,6 @@ its population, not what it decodes. Nothing was executed or observed live.
 - **UI — CLIENT and SERVICE (76 edges).** 71 inbound (UI bodies `002435C0`, `00243C00`, `002D28E0` call page-cited `00245020`, `002D9380`, `002D9B00`); 5 outbound (page-cited `002435C0`, `00243C00`, `0029ED50` call UI bodies `002D9380`, `002A0440`, `002D8D40`). Substantive edges include `00181000` is called by `00291010`; `00181000` is called by `002917E0`; `00181250` is called by `00291010`; `00181250` is called by `002917E0`; the remaining edges run through shared helpers the page cites.
 - **World — CLIENT (2 edges).** 2 inbound (World bodies `003C63A0`, `00378540` call page-cited `0024A480`, `0036A190`). Substantive edges include `0024A480` is called by `003C63A0`; the remaining edges run through shared helpers the page cites.
 - **WorldAreaField — CLIENT (6 edges).** 6 inbound (WorldAreaField bodies `003C0450`, `00576A50`, `MapRef_BeginLoadResources` (00268750) call page-cited `0036A190`, `002F9920`). Substantive edges include `002F9920` is called by `003C0450`; `002F9920` is called by `00576A50`; the remaining edges run through shared helpers the page cites.
+- **Movement — SERVICE (5 edges).** 4 outbound (page-cited `MainLoop_UpdateAndRenderFrame` (0022B8C0), `MainLoop_Draw` (0022B0B0), `0022BC20` call Movement bodies `00263560`, `00357780`, `0037CF00`).
+- **Party — SERVICE (2 edges).** 2 outbound (page-cited `MainLoop_UpdateAndRenderFrame` (0022B8C0), `0022BC20` call Party bodies `PartyFocus_CommitPendingPackedActorHandle_Thunk` (00358BB0)).
+- **RNG_Random_Selection — MECHANICAL (2 edges).** 2 outbound (page-cited `0022B6E0`, `0022B7E0` call RNG_Random_Selection bodies `RNG_MT19937_NextU32_Thunk` (00379CD0)) - shared-helper call surface, not a RNG_Random_Selection relationship of this page's subjects.

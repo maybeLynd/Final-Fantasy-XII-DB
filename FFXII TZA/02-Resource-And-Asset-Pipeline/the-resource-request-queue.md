@@ -188,8 +188,9 @@ question above is closed as far as this build goes:
   (§2.4).
 
 So the accumulator is written and never consumed. Whether it is a leftover or a defect is not a static question and
-is not claimed. Limit: the module's direct calls out were read from the listing and pass field values; they are
-not machine-checked.
+is not claimed. Limit: the module's direct calls out were read from the listing and pass field values; ~~they are
+not machine-checked~~ *checked in `_index/candidates/auditspec-review-ddres-b6-0930/` `queue_escape.py` (no direct
+call, return or store passes a slot pointer out of the module)*.
 
 **State 5's part arithmetic has two details the table compresses away**, and a reimplementation
 without them diverges:
@@ -869,6 +870,7 @@ not shared ownership. Read from `edges.tsv` 2026-09-17 (SWE2-FRONTIER).
 request-queue context. The story-event layer reads the same payload base when queueing its own
 requests; fan-in to the shared accessor, not a queue responsibility.
 - **Items_Equipment_Shops_License — SERVICE (1 edge).** 1 outbound (page-cited `00233C10` call Items_Equipment_Shops_License bodies `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (0030B6A0)). Substantive edges include `00233C10` calls `InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState` (0030B6A0).
+- **Script_VM_Native_Bridge — CLIENT and SERVICE (62 edges).** 61 inbound (Script_VM_Native_Bridge bodies `0050D9A0`, `00354D00`, `0050F0A0` call page-cited `InputDevice_QueryAvailabilityState_Always1` (0053DD10), `008620C0`, `002EFA70`); 1 outbound (page-cited `0050D9A0` call Script_VM_Native_Bridge bodies `VMValueStack_PopInt32CoerceFloat32` (00267E10)). Substantive edges include `00254CB0` is called by `0050F0A0`; `00254CB0` is called by `0050EEA0`; `00254CB0` is called by `0050D9A0`; `00254CB0` is called by `0050ED70`; the remaining edges run through shared helpers the page cites.
 - **Script_VM_Native_Bridge — CLIENT and SERVICE (62 edges).** 61 inbound (Script_VM_Native_Bridge bodies `0050D9A0`, `00354D00`, `0050F0A0` call page-cited `InputDevice_QueryAvailabilityState_Always1` (0053DD10), `008620C0`, `002EFA70`); 1 outbound (page-cited `0050D9A0` call Script_VM_Native_Bridge bodies `VMValueStack_PopInt32CoerceFloat32` (00267E10)). Substantive edges include `00254CB0` is called by `0050F0A0`; `00254CB0` is called by `0050EEA0`; `00254CB0` is called by `0050D9A0`; `00254CB0` is called by `0050ED70`; the remaining edges run through shared helpers the page cites.
 ## The `00379D40` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 

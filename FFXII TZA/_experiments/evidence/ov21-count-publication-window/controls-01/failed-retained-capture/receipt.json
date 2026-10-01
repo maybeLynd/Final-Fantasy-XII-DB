@@ -1,0 +1,12 @@
+{
+  "name": "failed-retained-capture",
+  "exit": 1,
+  "diagnostic": "retained input changed",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "2f37fbde6ea12e01ca457a33290d2346063ed5ba6839b363d00e9e6de0b25637",
+  "terminal": true,
+  "exception": null
+}

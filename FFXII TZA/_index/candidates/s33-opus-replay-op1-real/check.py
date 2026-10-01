@@ -57,9 +57,24 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.normpath(os.path.join(HERE, "..", "s21-opus-replay-applier-stub-free"))
 sys.path.insert(0, BASE)
 cwd = os.getcwd(); os.chdir(BASE)
-with contextlib.redirect_stdout(io.StringIO()):
-    import check as C                                     # block 332 (its cases run first, unchanged)
-os.chdir(cwd)
+# THE UPSTREAM'S VERDICT GATES THIS REPLAY (2026-10-01, OPUS, on ASTRA-REQ-OPUS-S33-UPSTREAM-VERDICT-GUARD-1001):
+# the import used to be trusted, so an upstream that printed FAIL still let every case below run and pass.
+# An import exception or any verdict other than allok True with every case passing refuses, exit 2, no result.
+# The retained result.json predates this guard (its upstream was ok, four rows); see test_upstream_guard.py.
+sys.path.append(HERE)                                     # appended: BASE must stay first, or `import check` finds this file
+import upstream_guard                                     # noqa: E402
+try:
+    with contextlib.redirect_stdout(io.StringIO()):
+        import check as C                                 # block 332 (its cases run first, unchanged)
+except Exception as e:                                    # noqa: BLE001 - any failure of the upstream refuses
+    print("REFUSED: upstream check raised %s: %s" % (e.__class__.__name__, e))
+    sys.exit(2)
+finally:
+    os.chdir(cwd)
+_ok, _why = upstream_guard.verdict(C)
+if not _ok:
+    print("REFUSED: %s" % _why)
+    sys.exit(2)
 
 W, uc, S = C.W, C.uc, C.S
 q = lambda a: struct.unpack("<Q", bytes(uc.mem_read(a, 8)))[0]

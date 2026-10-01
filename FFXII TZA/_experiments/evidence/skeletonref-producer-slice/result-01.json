@@ -1,0 +1,410 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original skeletonRef producer/copy call dataflow",
+  "driver_sha256": "fe986cc25949b169ef7cfd6b728fe5a6bdea0511c01abeb8ab66c9bb2a50daca",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 442,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 128,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 71,
+  "graphs": [
+    {
+      "entry": "0x3713c0",
+      "instructions": 52,
+      "returns": [
+        "0x371496"
+      ],
+      "calls": [
+        [
+          3609555,
+          "0x20e600"
+        ],
+        [
+          3609563,
+          "0x3ab7f0"
+        ],
+        [
+          3609571,
+          "0x20e620"
+        ],
+        [
+          3609599,
+          "0x20e600"
+        ],
+        [
+          3609610,
+          "0x409f50"
+        ],
+        [
+          3609621,
+          "0x4096c0"
+        ],
+        [
+          3609629,
+          "0x20e620"
+        ],
+        [
+          3609642,
+          "0x20e620"
+        ],
+        [
+          3609659,
+          "0x20e600"
+        ],
+        [
+          3609684,
+          "0x20e600"
+        ],
+        [
+          3609698,
+          "0x20e620"
+        ],
+        [
+          3609711,
+          "0x20e600"
+        ],
+        [
+          3609727,
+          "0x20e600"
+        ],
+        [
+          3609735,
+          "0x3e1c50"
+        ]
+      ]
+    },
+    {
+      "entry": "0x372820",
+      "instructions": 387,
+      "returns": [
+        "0x372f53"
+      ],
+      "calls": [
+        [
+          3614798,
+          "0x20e620"
+        ],
+        [
+          3614812,
+          "0x20e600"
+        ],
+        [
+          3614823,
+          "0x409f50"
+        ],
+        [
+          3614842,
+          "0x409a30"
+        ],
+        [
+          3614855,
+          "0x4096c0"
+        ],
+        [
+          3614991,
+          "0x20e620"
+        ],
+        [
+          3615044,
+          "0x20e620"
+        ],
+        [
+          3615087,
+          "0x20e600"
+        ],
+        [
+          3615095,
+          "0x3ab7f0"
+        ],
+        [
+          3615103,
+          "0x20e620"
+        ],
+        [
+          3615116,
+          "0x20e600"
+        ],
+        [
+          3615130,
+          "0x20e620"
+        ],
+        [
+          3615151,
+          "0x20e600"
+        ],
+        [
+          3615165,
+          "0x861eba"
+        ],
+        [
+          3615178,
+          "0x3713c0"
+        ],
+        [
+          3615189,
+          "0x20e600"
+        ],
+        [
+          3615247,
+          "0x20e600"
+        ],
+        [
+          3615273,
+          "0x4095a0"
+        ],
+        [
+          3615292,
+          "0x20e600"
+        ],
+        [
+          3615307,
+          "0x46d120"
+        ],
+        [
+          3615391,
+          "0x373dc0"
+        ],
+        [
+          3615410,
+          "0x46d120"
+        ],
+        [
+          3615419,
+          "0x46d120"
+        ],
+        [
+          3615426,
+          "0x20e620"
+        ],
+        [
+          3615483,
+          "0x20e620"
+        ],
+        [
+          3615676,
+          "0x409300"
+        ],
+        [
+          3615691,
+          "0x4094d0"
+        ],
+        [
+          3615944,
+          "0x20e600"
+        ],
+        [
+          3615979,
+          "0x373dc0"
+        ],
+        [
+          3616014,
+          "0x861ec0"
+        ],
+        [
+          3616166,
+          "0x409300"
+        ],
+        [
+          3616429,
+          "0x373d00"
+        ],
+        [
+          3616442,
+          "0x20e600"
+        ],
+        [
+          3616466,
+          "0x20e600"
+        ],
+        [
+          3616474,
+          "0x373d00"
+        ],
+        [
+          3616482,
+          "0x373ea0"
+        ],
+        [
+          3616493,
+          "0x20e600"
+        ],
+        [
+          3616519,
+          "0x20e600"
+        ],
+        [
+          3616531,
+          "0x409f50"
+        ],
+        [
+          3616542,
+          "0x4096c0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x20e600",
+      "instructions": 3,
+      "returns": [
+        "0x20e609"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x51fcf0",
+      "instructions": 93,
+      "returns": [
+        "0x51fe23"
+      ],
+      "calls": [
+        [
+          5373203,
+          "0x3ab7f0"
+        ],
+        [
+          5373239,
+          "0x3ab7f0"
+        ],
+        [
+          5373308,
+          "0x51f880"
+        ],
+        [
+          5373331,
+          "0x3ab7f0"
+        ],
+        [
+          5373375,
+          "0x3ab7f0"
+        ],
+        [
+          5373442,
+          "0x20e620"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3ab7f0",
+      "instructions": 32,
+      "returns": [
+        "0x3ab802",
+        "0x3ab829",
+        "0x3ab845",
+        "0x3ab852"
+      ],
+      "calls": [
+        [
+          3848236,
+          "0x36b130"
+        ]
+      ]
+    },
+    {
+      "entry": "0x20e620",
+      "instructions": 3,
+      "returns": [
+        "0x20e628"
+      ],
+      "calls": []
+    }
+  ],
+  "positive_writers": [
+    {
+      "pc": "0x371435",
+      "bytes": "898394000000",
+      "args": "dword ptr [rbx + 0x94], eax"
+    },
+    {
+      "pc": "0x371469",
+      "bytes": "898394000000",
+      "args": "dword ptr [rbx + 0x94], eax"
+    },
+    {
+      "pc": "0x372914",
+      "bytes": "898694000000",
+      "args": "dword ptr [rsi + 0x94], eax"
+    },
+    {
+      "pc": "0x3729a9",
+      "bytes": "898694000000",
+      "args": "dword ptr [rsi + 0x94], eax"
+    }
+  ],
+  "binding": "372820 storesEncode(callerarg5) into80. Ifcallerarg7sourceblobnonnull, storescomputedworkspaceoffset in90, resolvesworkspacevia3AB7F0 into84, then94=low32(84+90). It passesDecode94 asRCX destination, callerarg7 asRDX source, signed32 callerarg8 extendedto64 asR8 to861EBA, then calls3713C0 torefreshbinding.",
+  "refresh": "3713C0 group16FFFF skips before clearing94. Otherwise writesencodedNULL; onlyA0decodednonnull and90signedpositive admit new94=low32(84+90), thennonnull decode permits3E1C50. Opaque section-query/native effects not proved.",
+  "abi": {
+    "prologue_frame_bytes": 72,
+    "arg5_entry28_current70": "workspace representation",
+    "arg7_entry38_current80": "optional sourceblob",
+    "arg8_entry40_current88": "onlyDWORDread/MOVSXD; negative length unsafe/unproved"
+  },
+  "workspace_offset": "Original32bit IMUL149*headerDWORD_C, pluszeroextendedWORD_38, LEA(2*x+15),CDQ/AND15 correction andANDFFFFFFF0. No unrestricted safe-size or author-domain proof.",
+  "modular_binding_identity": "newref=low32(ref84+offset90) understablebase. MOVSXD doesnotleavea negative64 destination becauseencoder readsECX only; finaldecodeaddsfull64base.",
+  "mathematical_controls": [
+    {
+      "base": "0x0",
+      "ref": "0xcb000000",
+      "offset": "0x6000",
+      "signed_temporary": -889167872,
+      "encoded": "0xcb006000",
+      "decoded_final": "0xcb006000"
+    },
+    {
+      "base": "0x0",
+      "ref": "0xfffffff0",
+      "offset": "0x20",
+      "signed_temporary": 16,
+      "encoded": "0x10",
+      "decoded_final": "0x10"
+    },
+    {
+      "base": "0x1234567800001000",
+      "ref": "0x40",
+      "offset": "0x20",
+      "signed_temporary": 4192,
+      "encoded": "0x60",
+      "decoded_final": "0x1234567800001060"
+    }
+  ],
+  "consumer_preimage": {
+    "field_path": "Database/FFXII TZA/_types/fields.tsv",
+    "field_file_sha256": "0f298f58e6b405f199a413e73425611657feb2812a3e7e8cabc19a0156c8c3b2",
+    "row": "RenderStrideC0Element\t0x094\t4\tskeletonRef\tuint32\tTHE HOTTEST FIELD, 31 accesses, and always the same shape: `mov ecx, [elem+0x94]` then `call 0020E600` ImageAddress_ResolveRuntimePointer, whose return is null-tested and used as the object for eleven distinct consumers. One of them, 003E3C30 Skeleton_ResetConfiguredAdditiveBoneMatrices, walks the target as a skeleton - decoding its +0x88 to an index list, its +0x8C as the count and its +0x78 to a 0x290-stride bone array, resetting a 4x4 at +0x230 of each. So this is a 32-bit relative pointer to a skeleton, established by what the consumer DOES and not by its name. NOTE, 2026-09-19: the constructor 003721E0 does NOT initialise this field, though it initialises the other five relative pointers to encoded null. So +0x94 is set by whatever attaches a skeleton to the row, and this census found no writer for it at all - an open question, not an absence.\tSIGNATURE RESOLVED\tPROVEN\texe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "access_table_path": "Database/FFXII TZA/02-Resource-And-Asset-Pipeline/render-stride-0e-lement-accesses.tsv",
+    "access_table_sha256": "e145cfd70776c460f66c343b9053cd3657fd7a8cabeb04d4317daadf4dff2edd",
+    "limits": "Read-only currentpreimage; oldcensus note stays historical, newpublisher/store-origin question stillneedsreview"
+  },
+  "limits": [
+    "No original native/harness/live execution; modular examples are source calculations, general equality follows fixed-width ring operations",
+    "Positive four suppliedwriters verified; not a complete allwriter/bulk-copy/alias or temporal lifetime closure",
+    "Validprivateframe/row/table/nonaliasing, normalABI/nativecallee return andstablebase/noninterference required",
+    "861EBA callarguments established, not effects under any stub or realexecution; copying callerbytes doesnotbyitself identifytheir authored source",
+    "Callerarg5 allocation/extent/ownership, arg7blob origin/length domain, targetinternal78/88arrays andnaturalskeletonresetentry remainOPEN",
+    "Oldno-writer census note preservedas historical; currentpositiveproducer explanation and independentOPUS/FABLE consumption pending",
+    "EXP127 remainsINVALID_POST_TRACE; no semanticpromotion, retry/menu/game or wholeOV closure"
+  ]
+}

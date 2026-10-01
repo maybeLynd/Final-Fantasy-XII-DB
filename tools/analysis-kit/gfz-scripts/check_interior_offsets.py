@@ -60,7 +60,7 @@ puts on WIDTH DELIBERATE, so a row cannot silence the gate by mentioning the phr
 rows are printed with their verdicts and written into the leads file under a `status` column,
 because an empty table and a table of settled questions look identical to whoever opens it.
 
-    check_interior_offsets.py [--db DB] [--all]
+    check_interior_offsets.py [--db DB] [--all] [--write-leads]
 
 Exit 0 when nothing is found, 1 when a row is contradicted.
 """
@@ -164,6 +164,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", default=DB)
     ap.add_argument("--all", action="store_true", help="list every finding, not the first 40")
+    # A checker must not dirty the tree it audits: a text-only audit pass (cloud stream A, 2026-10-01)
+    # found this one rewriting _index/candidates/interior-offset-leads.tsv on every run. Writing is opt-in.
+    ap.add_argument("--write-leads", action="store_true",
+                    help="rewrite _index/candidates/interior-offset-leads.tsv (default: read-only)")
     a = ap.parse_args()
 
     # the census map lives in check_census_widths; read it rather than keep a second copy
@@ -265,23 +269,26 @@ def main():
         print("  ... %d more, use --all" % (len(findings) - 40))
 
     out_path = os.path.join(a.db, "_index", "candidates", "interior-offset-leads.tsv")
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    with io.open(out_path, "w", encoding="utf-8", newline="\n") as fh:
-        # The ADJUDICATED rows are written here too, and deliberately. An empty table and a
-        # table of settled questions look identical to whoever opens the file, and this store
-        # published a header-only leads table by accident once already today. A file that says
-        # "six, all decided, and here is what each was decided as" cannot be misread as
-        # "nothing was measured".
-        fh.write("status\ttype\toffset\tsize\tname\tctype\tshape\tinterior\twidths\tsites\n")
-        for tn, off, nm, verdict in adjudicated:
-            fh.write("adjudicated\t%s\t0x%X\t\t%s\t\t%s\t\t\t\n" % (tn, off, nm, verdict))
-        for tname, off, size, name, ctype, inside, shape in findings:
-            ints = ",".join("0x%X" % d for d, _ in inside)
-            ws = ",".join(str(w) for _, lst in inside for w, _, _ in lst)
-            sites = " ".join(site for _, lst in inside for _, site, _ in lst)
-            fh.write("open\t%s\t0x%X\t%d\t%s\t%s\t%s\t%s\t%s\t%s\n"
-                     % (tname, off, size, name, ctype, shape, ints, ws, sites))
-    print("  leads written to %s" % os.path.relpath(out_path, a.db))
+    if a.write_leads:
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with io.open(out_path, "w", encoding="utf-8", newline="\n") as fh:
+            # The ADJUDICATED rows are written here too, and deliberately. An empty table and a
+            # table of settled questions look identical to whoever opens the file, and this store
+            # published a header-only leads table by accident once already today. A file that says
+            # "six, all decided, and here is what each was decided as" cannot be misread as
+            # "nothing was measured".
+            fh.write("status\ttype\toffset\tsize\tname\tctype\tshape\tinterior\twidths\tsites\n")
+            for tn, off, nm, verdict in adjudicated:
+                fh.write("adjudicated\t%s\t0x%X\t\t%s\t\t%s\t\t\t\n" % (tn, off, nm, verdict))
+            for tname, off, size, name, ctype, inside, shape in findings:
+                ints = ",".join("0x%X" % d for d, _ in inside)
+                ws = ",".join(str(w) for _, lst in inside for w, _, _ in lst)
+                sites = " ".join(site for _, lst in inside for _, site, _ in lst)
+                fh.write("open\t%s\t0x%X\t%d\t%s\t%s\t%s\t%s\t%s\t%s\n"
+                         % (tname, off, size, name, ctype, shape, ints, ws, sites))
+        print("  leads written to %s" % os.path.relpath(out_path, a.db))
+    else:
+        print("  leads not written (read-only run; --write-leads rewrites %s)" % os.path.relpath(out_path, a.db))
 
     print()
     print("CONTROL  the two rows this tool was built from are split, so they must be ABSENT")

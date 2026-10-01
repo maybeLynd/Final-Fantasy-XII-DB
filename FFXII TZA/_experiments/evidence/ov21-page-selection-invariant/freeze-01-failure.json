@@ -1,0 +1,236 @@
+{
+  "status": "INVALID_INCOMPLETE",
+  "tool": "exec_command",
+  "exit": 1,
+  "driver_sha256": "0d3ab4c2f696b5516ca15913be0ac2ea3c055fa94942139cbb66c3cdf7ef5072",
+  "cause": "Outer controls-directory variable base was overwritten by inner input-base variable. Secondcase attempted directory below existing validate-title-source-annotations.py file. No manifest and no publication.",
+  "partial_tree": "ov21-page-selection-invariant-frozen-ready",
+  "partial_members": [
+    {
+      "path": "capture-01.status.json",
+      "bytes": 545,
+      "sha256": "7f135b5d3a49b0489d64e6aa2428935841fe0a7af0f30f3b0f726e0e72640560"
+    },
+    {
+      "path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 913,
+      "sha256": "50b6dccf9a69fc7d97ad72193ddf444112cbf8d033836fac445da77b2b207065"
+    },
+    {
+      "path": "consumer-preimage.json",
+      "bytes": 6288,
+      "sha256": "08c6cabee0b300ecd1b637ad03977ba85b4fd0479642f9273b244d3d85527ca6"
+    },
+    {
+      "path": "control-01-driver.py",
+      "bytes": 3312,
+      "sha256": "87a21cfd17c9814f068503bee0a54b3995141dafb8af1b9576bd9bd657719070"
+    },
+    {
+      "path": "control-01.status.json",
+      "bytes": 545,
+      "sha256": "366b76f1cbb4f2b69ad460adbe28c6c1c6aa28cf281c74e78b6a2cf479879ae2"
+    },
+    {
+      "path": "control-01.stderr",
+      "bytes": 570,
+      "sha256": "07a15b9b88d284fd1835faca3f450d5a45b9a3626a1d96fd5f24186f7c36ec08"
+    },
+    {
+      "path": "control-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-02.status.json",
+      "bytes": 545,
+      "sha256": "f69039de94176c925c089eb4bff1e18f360900940cb06136bce1ea9548247941"
+    },
+    {
+      "path": "control-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-02.stdout",
+      "bytes": 107,
+      "sha256": "96b92b077443e3ea077b0678dd7b844c83c03f6a2ca927fbe520aad8ade22ffc"
+    },
+    {
+      "path": "control-result-02.json",
+      "bytes": 3135,
+      "sha256": "9a787e66d7c029ad14d991f0fe1dc057b78459243a8a92b3f22b8fe60a3d918e"
+    },
+    {
+      "path": "control.py",
+      "bytes": 4264,
+      "sha256": "5f735f759cb7e615e962a4fabd5493f6e02f6f3116aa5590948d325871ec5424"
+    },
+    {
+      "path": "controls-01/failed-capture/capture-01.status.json",
+      "bytes": 504,
+      "sha256": "9cd6522dc9c9717e4537be2c5095052f15a98aa21b24d79b9d494f52860e5351"
+    },
+    {
+      "path": "controls-01/failed-capture/control.py",
+      "bytes": 3312,
+      "sha256": "87a21cfd17c9814f068503bee0a54b3995141dafb8af1b9576bd9bd657719070"
+    },
+    {
+      "path": "controls-01/failed-capture/input-identities.json",
+      "bytes": 6657,
+      "sha256": "a8bfe7ccf6cb7d9b127c466377d2bd2a36ecc37cbb2eccb1fed35a245683e62f"
+    },
+    {
+      "path": "controls-01/failed-capture/receipt.json",
+      "bytes": 471,
+      "sha256": "dd08a1077f00fb236cc55e2b47c1a1b65cb24cb536f9c52a80d38821f18fbe2a"
+    },
+    {
+      "path": "controls-01/failed-capture/stderr.raw",
+      "bytes": 859,
+      "sha256": "de864c21e46daf7f3602e4d833d35aa034a07b61f1c843266a055a7c931260d7"
+    },
+    {
+      "path": "controls-01/failed-capture/stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "lineage.json",
+      "bytes": 1084,
+      "sha256": "2bdf2835f2fe8edc751d6042d72f711319fcc47cbe243f662d204570dde6a7ab"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1595,
+      "sha256": "0ed43e70e8aa05c6170c087eb92c66fe2c91f857f810762fe5d5ba4e4dad8f78"
+    },
+    {
+      "path": "proof-01.status.json",
+      "bytes": 566,
+      "sha256": "85a2247f174d2714883f0cc7e152f7b8a9a7a263ef5e975b2a2ea37e991c17cf"
+    },
+    {
+      "path": "proof-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-01.stdout",
+      "bytes": 106,
+      "sha256": "613ea00f291217471e2ff47dc14ae4f79c84420b2f988e7bde10d39aaab817c1"
+    },
+    {
+      "path": "proof-02.status.json",
+      "bytes": 566,
+      "sha256": "7552b2a8e8c71574186e8d583a29728751f60c8627a0fd6118768028d0d68e2b"
+    },
+    {
+      "path": "proof-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "proof-02.stdout",
+      "bytes": 106,
+      "sha256": "613ea00f291217471e2ff47dc14ae4f79c84420b2f988e7bde10d39aaab817c1"
+    },
+    {
+      "path": "prove-01-driver.py",
+      "bytes": 12348,
+      "sha256": "1a85299156dbfdf0cedfe69910873326e1928ee6e672e3cbd2e804e0b0c9cea0"
+    },
+    {
+      "path": "prove.py",
+      "bytes": 12380,
+      "sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422"
+    },
+    {
+      "path": "prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    },
+    {
+      "path": "publication-source-preflight-01.json",
+      "bytes": 1731,
+      "sha256": "c6ea5210af5f9750990e8bed1e4515cac73dff3958ad71e73c9ed692f4c3c7b7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5979,
+      "sha256": "651fc288c9fa93864598476cc82351032b5ba2233abbc160922e74caa20de7ae"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 7742,
+      "sha256": "8758f3ffb267b3446079d2f914dab5a7afc238753bd9b8f7bb9c46e91fb262f3"
+    },
+    {
+      "path": "result-02.json",
+      "bytes": 7774,
+      "sha256": "7391be7c067d3a5f8ddd0690a712bc86f4748c4210881b36bfdc9f5f600b88a8"
+    },
+    {
+      "path": "retained/capture-01.status.json",
+      "bytes": 541,
+      "sha256": "dd6baf69748044e6c3653de193c17fcf4ec91912ababe81704ab8bb37fbb690c"
+    },
+    {
+      "path": "retained/capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/capture-01.stdout",
+      "bytes": 90,
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "retained/capture.py",
+      "bytes": 1010,
+      "sha256": "2539d5399cd2c1e5aac9bf2f25861e7ec37be784048ea566375fd6156f87135c"
+    },
+    {
+      "path": "retained/manifest.json",
+      "bytes": 8052,
+      "sha256": "c78420f604a4763f41074eec85b307eea39750b008623b4b28d38bc6e9cec70b"
+    },
+    {
+      "path": "retained/source-01.json",
+      "bytes": 110229,
+      "sha256": "7b25b744885f31e0c3ff7b76e92031c373d6d4ec532acac5cc964a6582cce4c5"
+    },
+    {
+      "path": "run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "source-01.json",
+      "bytes": 54852,
+      "sha256": "a3af2c8f3669f4e9e1cadee57661df164a9a226b5cb18d9d59ad85aaedf61561"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "limits": "Observed tool failure and preserved partialfile identities; not an invented successful producer receipt"
+}

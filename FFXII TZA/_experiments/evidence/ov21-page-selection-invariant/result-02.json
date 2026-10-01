@@ -1,0 +1,345 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY source proof and conditional finite invariant; no machine execution",
+  "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "a3af2c8f3669f4e9e1cadee57661df164a9a226b5cb18d9d59ad85aaedf61561"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "7b25b744885f31e0c3ff7b76e92031c373d6d4ec532acac5cc964a6582cce4c5"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 182,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 367,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 81,
+  "graphs": [
+    {
+      "entry": "0x51f6b0",
+      "instructions": 76,
+      "returns": [
+        "0x51f6e2",
+        "0x51f79b"
+      ],
+      "calls": [
+        [
+          5371645,
+          "0x3ab7f0"
+        ],
+        [
+          5371742,
+          "0x3ab7f0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x51f880",
+      "instructions": 106,
+      "returns": [
+        "0x51f8cb",
+        "0x51f9b8",
+        "0x51f9ce",
+        "0x51f9e4"
+      ],
+      "calls": [
+        [
+          5372062,
+          "0x3ab7f0"
+        ],
+        [
+          5372131,
+          "0x3ab7f0"
+        ],
+        [
+          5372176,
+          "0x3ab7f0"
+        ],
+        [
+          5372284,
+          "0x3ab7f0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x51f7a0",
+      "instructions": 66,
+      "returns": [
+        "0x51f841",
+        "0x51f84f",
+        "0x51f877"
+      ],
+      "calls": [
+        [
+          5371841,
+          "0x3ab7f0"
+        ],
+        [
+          5371898,
+          "0x3ab7f0"
+        ],
+        [
+          5371944,
+          "0x51f6b0"
+        ],
+        [
+          5371993,
+          "0x3ab7f0"
+        ]
+      ]
+    }
+  ],
+  "head_tail_accesses": [
+    {
+      "pc": "0x51f743",
+      "offset": "0x18",
+      "bytes": 4,
+      "role": "r"
+    },
+    {
+      "pc": "0x51f749",
+      "offset": "0x18",
+      "bytes": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x51f74c",
+      "offset": "0x1c",
+      "bytes": 4,
+      "role": "r"
+    },
+    {
+      "pc": "0x51f782",
+      "offset": "0x1c",
+      "bytes": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x51f7e9",
+      "offset": "0x18",
+      "bytes": 4,
+      "role": "r"
+    },
+    {
+      "pc": "0x51f938",
+      "offset": "0x18",
+      "bytes": 4,
+      "role": "w"
+    },
+    {
+      "pc": "0x51f943",
+      "offset": "0x1c",
+      "bytes": 4,
+      "role": "w"
+    }
+  ],
+  "page_links": "page DWORD0=id, DWORD4=previous, DWORD8=next; descriptor DWORD18=head/DWORD1C=tail; acquisition appends, removal rewires neighbors/endpoints",
+  "zero_live_count": "Branch51F7B2 reaches51F828call51F6B0, not immediate return; acquisition can succeed or fail. Negative signed count natural admissibility not proved.",
+  "finite_search_certificate": [
+    {
+      "start": 0,
+      "visit_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "start": 1,
+      "visit_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0
+      ]
+    },
+    {
+      "start": 2,
+      "visit_order": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        1
+      ]
+    },
+    {
+      "start": 3,
+      "visit_order": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "start": 4,
+      "visit_order": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "start": 5,
+      "visit_order": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "start": 6,
+      "visit_order": [
+        6,
+        7,
+        8,
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "start": 7,
+      "visit_order": [
+        7,
+        8,
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "start": 8,
+      "visit_order": [
+        8,
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "start": 9,
+      "visit_order": [
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ],
+  "mathematical_sentinel_states": 10240,
+  "conditional_invariant": "Valid stable10x32 metadata, globalused=sum(pageused), complete acyclic active list, free sentinels for inactive pages, valid active cursor when n>0, stable nonNULL table and no interference imply: used<320 finds a partial page or acquires a free page. A full current page alone cannot explain helperNULL.",
+  "countermodel": {
+    "method": "composed static branch certificate, not execution or natural reachability",
+    "pageused": [
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      31
+    ],
+    "globalused": 319,
+    "banksLive": 10,
+    "cursor": 0,
+    "head": -1,
+    "dropped_premise": "complete active-list coherence",
+    "selector_return_pc": "51F841",
+    "helper_return_pc": "51F6E2",
+    "result": "NULL despite319<320"
+  },
+  "consumer_corrections": {
+    "path": "Database/FFXII TZA/_types/fields.tsv",
+    "preimage_file_sha256": "0f298f58e6b405f199a413e73425611657feb2812a3e7e8cabc19a0156c8c3b2",
+    "rows": "018 unread u8[8] contradicted by independent DWORDhead/tail accesses; 022 immediate-return claim contradicted by original acquisition call"
+  },
+  "limits": [
+    "No original machine/native/live execution; cursor orders and10240 sentinel categories are mathematical source-linked calculations",
+    "Complete-list/count/sentinel/occupancy consistency, valid active cursor when n>0, initialized lifetime, no interference and stable nonNULL table identity are preconditions, not proved universal original invariants",
+    "Nonzero relocatable handle3AB7F0/native effects not proved; handle0 or valid stable resolver/table identity required",
+    "Removal link updates do not establish physical backing free or scheduling",
+    "Allwriters/concurrency/realstartup, authored ownercardinality, samekeyreuse, naturalexhaustion and wholeOV21 remainOPEN",
+    "Exact peer-owned consumer preimage preserved; independent acceptance/incorporation pending"
+  ]
+}

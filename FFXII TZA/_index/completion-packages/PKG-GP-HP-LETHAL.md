@@ -31,7 +31,7 @@ Presentation (animation, text, screens) is only named, not reproduced.
 | obligation | owner / locator |
 |---|---|
 | death animation and rendering past `003E6B40` / `002ECEC0` and `003BBD00` / `003F8980` | presentation, 17-Presentation-Rendering; status-write page l.435 |
-| on-screen game-over screen and wording | 16-UI; EX-2 row (answered at mechanism level only) |
+| on-screen game-over screen and wording | 16-UI; EX-2 row — now answerable 2026-10-01 (SWE2-CONTRACT batch 15 P1, `b15_checks.py` G1-G6): the request-11 screen draws `gameover.mrp` + the image `gameover_c.tm2` (1024 x 256 8-bit TIM2, identical in all nine language folders, reading *GAME OVER*; one text slot, string id -1) |
 | body retirement/despawn after the rewards sequence's "retire" step | 05-Spawn-Encounter-Lifecycle; to be located (see item G8) |
 | the defeat-rewards prose page's REOPENED status and its peer acceptance | 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md (SWE2-DATA / section owner) |
 | a non-zero-floor unit's KO clear (contract l.248: not claimed) | CONTRACT-hp-write-and-lethal-transition.md, OPUS |

@@ -1,0 +1,18 @@
+{
+  "name": "failed-capture",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-c1-nibble-producers\\controls-01\\failed-capture\\prove.py",
+    "refused-result.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "driver_sha256": "9b3e8c9dae0132fc56ff2cfd8d741e00759bfdf9190cb3b773c86b19db0ce2e2",
+  "diagnostic": "required capture status failed",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "f1f592b2c2214b9c246ee70a2da584433e389b1262abc49217906e03aaaa112c"
+}

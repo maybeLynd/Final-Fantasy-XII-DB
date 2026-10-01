@@ -1,0 +1,31 @@
+{
+  "parent_commit": "e92dc5bd5855f3bc7bfa4a449d81e2907158d619",
+  "parent_manifest_sha256": "c78420f604a4763f41074eec85b307eea39750b008623b4b28d38bc6e9cec70b",
+  "retained_files": [
+    {
+      "path": "source-01.json",
+      "sha256": "7b25b744885f31e0c3ff7b76e92031c373d6d4ec532acac5cc964a6582cce4c5"
+    },
+    {
+      "path": "capture.py",
+      "sha256": "2539d5399cd2c1e5aac9bf2f25861e7ec37be784048ea566375fd6156f87135c"
+    },
+    {
+      "path": "capture-01.status.json",
+      "sha256": "dd6baf69748044e6c3653de193c17fcf4ec91912ababe81704ab8bb37fbb690c"
+    },
+    {
+      "path": "capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "c78420f604a4763f41074eec85b307eea39750b008623b4b28d38bc6e9cec70b"
+    }
+  ],
+  "limits": "Original earliercapture identity reused; no recapture/reexecution credit"
+}

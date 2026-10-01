@@ -584,7 +584,11 @@ values are live engine settings rather than a display buffer.
   the count stays at the constructor's literal 3. Registered 2026-09-30 (SWE2-CONTRACT); static.
   **ANSWERED 2026-09-30 (static; SWE2-CONTRACT on FABLE's record `rc789-fable-0930` (commit `8bdf31fcb`)): only the constructor writes it, so the count stays 3
   and elements 3–7 are built but never counted in.** The object is a `0xB08`-byte singleton with no vtable, published
-  only at `01F82EA8`. Intersecting the functions that hold that pointer (widened through direct callees to 1 and 3 hops)
+  at `01F82EA8` (stores in the getters `001F0810` / `001F0850` / `001F1590` / `001F1600`, the last two at the
+  inlined-creator sites `001F15D7` / `001F1650`) and copied once into `01F812C8` by `0015CC00`. *(Wording corrected
+  2026-10-01 on SWE2-AUDIT-SPEC's [`auditspec-review-ddres-b3-0930`](../../_index/candidates/auditspec-review-ddres-b3-0930/REVIEW.md)
+  narrowing 2 and FABLE's restatement at `a8aed6ca9`; `01F812C8`'s readers `001C3D50` / `001C7940` write other
+  fields of the object, not `+0x13C`.)* Intersecting the functions that hold that pointer (widened through direct callees to 1 and 3 hops)
   with every non-stack store covering dword `+0x13C` leaves only the constructor's `001EF389` at 1 hop; the three extra
   functions at 3 hops each write a different, freshly allocated object. Tier 1. *Limit:* a pointer carried through an
   indirect call or a bulk copy is outside the census.
@@ -680,9 +684,12 @@ values are live engine settings rather than a display buffer.
   **ANSWERED 2026-09-30 (static; SWE2-CONTRACT on FABLE's record `rc789-fable-0930` (commit `8bdf31fcb`)): the D3D11 multisample count, 0 = off.** It ships
   as 4. The settings path `00186CD0` derives it from the framework setting `[00796E20() + 0xD3C]`: 0 and 1 give 0 (MSAA
   flag `+0xDBA` cleared), any other n gives n. `enableMsaaInternal` passes it through render commands to byte `+9` of
-  the render target (`00189110`), and the texture creator `0061FDA0` puts that byte in
-  `D3D11_TEXTURE2D_DESC.SampleDesc.Count` for `CreateTexture2D` (`006200E5`); 7 and 9 are remapped to count 4 / 8 with
-  quality 16. Tier 1. *Not claimed:* which values the shipped options menu writes to the framework setting.
+  the render target (`00189110`), and the texture creator `0061FDA0` reads that byte into the descriptor's
+  `SampleDesc.Count` (`rsp + 0x5C`): when the flag at `rsp + 0x24` is set, the descriptor is copied to `rsp + 0x78`,
+  the primary is reset to `{1, 0}` and created at `006200E5`, and the multisampled copy is created at `00620188`;
+  otherwise the multisampled descriptor is created at `006200E5`; 7 and 9 are remapped to count 4 / 8 with
+  quality 16 *(restated 2026-10-01 on FABLE's record at `a8aed6ca9`, auditsem-review-takebacks2-0930 §7 N2)*. Tier 1.
+  *Not claimed:* which values the shipped options menu writes to the framework setting.
   *Corroborated and extended 2026-09-30 by ORACLE's record [`rc7-msaa-word-0930`](../../_index/candidates/rc7-msaa-word-0930/README.md)
   (commit `b6d40efbd`): the framework `+0xD3C` writer is the boot store `0079856F` (through a `+0xD20` base, which a `+0xD3C`
   displacement census misses), and the `+0xDC8` source of the render pass list's store is `00189520`, fed only by the
@@ -1181,6 +1188,7 @@ most settings land outside the console's range.
 - **Story_Event_Quest_Hunt — SERVICE (1 edge).** 1 outbound (page-cited `BattleUnit_TryTriggerNearbyAuthoredFieldAction` (002F8060) call Story_Event_Quest_Hunt bodies `PersistentFlag_SetBank512Low` (0032AD70)). Substantive edges include `BattleUnit_TryTriggerNearbyAuthoredFieldAction` (002F8060) calls `PersistentFlag_SetBank512Low` (0032AD70).
 - **UI — MECHANICAL (2 edges).** 2 UI-side calls into shared helper(s) the page cites (`Actor_GetWorldPosition` (00265020), `00796E20`) - the helpers' general call surface, not a UI relationship of this page's subjects.
 - **WorldAreaField — CLIENT and SERVICE (16 edges).** 5 inbound (WorldAreaField bodies `World_UpdateSimulationTick` (00314020), `00379290`, `00379A10` call page-cited `RNG_MT19937_NextU32_Thunk` (00379CD0), `0017D280`, `00265920`); 11 outbound (page-cited `001CD0E0`, `Spawn_TrySelectCandidatePosition` (00234AF0), `SpawnLifecycle_CheckAndRetireByNativeRange` (002350C0) call WorldAreaField bodies `FieldData_GetActiveFieldRecordBit15` (00313F60), `FieldData_GetActiveFieldRecordBit15` (00377C20), `WorldTransition_GetTransitionFieldId` (00314910)). Substantive edges include `001CD0E0` calls `WorldTransition_GetTransitionFieldId` (00314910); `001CD0E0` calls `FieldData_GetVariable0` (00265270); `Spawn_TrySelectCandidatePosition` (00234AF0) calls `FieldRegion_ContainsWorldPosition` (002374E0); `Spawn_TrySelectCandidatePosition` (00234AF0) calls `003209C0`; the remaining edges run through shared helpers the page cites.
+- **Script_VM_Native_Bridge — CLIENT (54 edges).** 54 inbound (Script_VM_Native_Bridge bodies `0050D240`, `0050D780`, `0050CE40` call page-cited `0017D280`, `Actor_GetWorldPosition` (00265020), `00265920`). Substantive edges include `00265920` is called by `0050D360`; `00265920` is called by `00356250`; `002ED6F0` is called by `003580C0`; `PersistentFlag_SetBank512Low` (0032AD70) is called by `00353750`; the remaining edges run through shared helpers the page cites.
 ## The `001C3D50` exclusive subtree — all 3 members bound (SWE2-FRONTIER, followup queue)
 
 `001C3D50` (4,607 B) is the second scene-config loader §98 names — the one

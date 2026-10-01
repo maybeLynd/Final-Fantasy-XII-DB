@@ -485,3 +485,4 @@ Interior anchor `005018A5` (function `00501820`).
 
 - **Movement — CLIENT (1 edge).** 1 inbound (Movement bodies `003B7E20` call page-cited `0036D840`). Substantive edges include `0036D840` is called by `003B7E20`.
 - **Script_VM_Native_Bridge — CLIENT (3 edges).** 3 inbound (Script_VM_Native_Bridge bodies `003B7C60`, `0034D700`, `003B7BB0` call page-cited `0036D840`). Substantive edges include `0036D840` is called by `003B7C60`; `0036D840` is called by `0034D700`; `0036D840` is called by `003B7BB0`.
+- **Script_VM_Native_Bridge — CLIENT (3 edges).** 3 inbound (Script_VM_Native_Bridge bodies `003B7C60`, `0034D700`, `003B7BB0` call page-cited `0036D840`). Substantive edges include `0036D840` is called by `003B7C60`; `0036D840` is called by `0034D700`; `0036D840` is called by `003B7BB0`.

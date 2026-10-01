@@ -331,7 +331,7 @@ graph tooling.
 - **UI - CLIENT (1 edge).** `00265680` is also called by bodies filed to UI: `00279E20` - shared machinery across the layer boundary, no shared ownership.
 - **World - CLIENT (1 edge).** `0032E400` is also called by bodies filed to World: `00378540` (Area) - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - CLIENT and SERVICE (11 edges).** `001EC560` is also called by bodies filed to WorldAreaField (world area): `001EDCD0` (AuthoredPresentationCondition); `001CD0E0`, `001ED130` reach bodies filed to WorldAreaField (world area): `00265270`, `00314910` - shared machinery across the layer boundary, no shared ownership.
-
+- **CombatAction — CLIENT and SERVICE (4 edges).** 2 inbound (CombatAction bodies `BattleAction_TryEnterGlobalSpecialSequence` (0030CE10), `0030CBE0` call page-cited `BattleAction_InitializeGlobalSpecialSequenceMode` (00306BD0), `BattleAction_TryEnterGlobalSpecialSequence` (0030CE10)); 2 outbound (page-cited `BattleAction_InitializeGlobalSpecialSequenceMode` (00306BD0), `BattleAction_TryEnterGlobalSpecialSequence` (0030CE10) call CombatAction bodies `BattleSpecialSequence_DeriveActionPresentationCode` (00309230), `BattleAction_InitializeGlobalSpecialSequenceMode` (00306BD0)).
 ## Falsification pass 1 — 2026-09-29 (OPUS): the producers, the setter and the pusher survive; one reachability row and one count do not
 
 **Attack.** Sections 2 to 4 were turned into checks at their instructions. Every caller and thunk hop the page states

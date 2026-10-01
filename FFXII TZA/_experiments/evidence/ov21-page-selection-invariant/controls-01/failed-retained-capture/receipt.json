@@ -1,0 +1,12 @@
+{
+  "name": "failed-retained-capture",
+  "exit": 1,
+  "diagnostic": "required retained capture failed",
+  "diagnostic_matched": false,
+  "refused_result_absent": true,
+  "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "94d2972603fd8b17b0f73e46f4b134447cbac212945d39d5ca6fe65647fee708",
+  "terminal": true,
+  "exception": null
+}

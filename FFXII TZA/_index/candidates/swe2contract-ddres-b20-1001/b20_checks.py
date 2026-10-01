@@ -317,31 +317,41 @@ def lines(p):
     return open(p, "rb").read().decode("utf-8").split("\n")
 
 
+def body_lines(p):
+    # batch-20 notes live in the body; front matter (the status field) may cite the tag without being a note
+    ls = lines(p)
+    end = next(i for i in range(1, len(ls)) if ls[i].strip() == "---")
+    return ls[end + 1:], end + 1
+
+
 expect = {MAP: [32, 46, 144, 208, 333, 813, 820, 824, 835, 836, 855, 881, 974, 996, 1018, 1037, 1054, 1056, 1077, 1149,
                 1211, 1294, 1295],
           RTR: [37, 194, 216, 344, 488, 519, 543, 620, 885]}
 for p, want in expect.items():
-    got = [n + 1 for n, t in enumerate(lines(p)) if TAG in t]
+    body, off = body_lines(p)
+    got = [n + off + 1 for n, t in enumerate(body) if TAG in t]
     check("Z1 %s: batch-20 notes on exactly the README's lines" % os.path.basename(p), got == want, got)
 strikes = []
 for p in (MAP, RTR):
-    for n, t in enumerate(lines(p)):
+    body, off = body_lines(p)
+    for n, t in enumerate(body):
         if TAG in t:
             # a batch-20 strike is the struck 02B457D9 text on a batch-20 line
             for m in re.finditer(r"~~(.+?)~~", t):
                 if "02B457D9" in m.group(1) or "02B457DC" in m.group(1):
-                    strikes.append((os.path.basename(p), n + 1, m.group(1)))
+                    strikes.append((os.path.basename(p), n + off + 1, m.group(1)))
 check("Z2 exactly two batch-20 strikes (map line 333, the section-4 row; map line 1294, the interior citation) and "
       "consumer-check.md exists",
       strikes == [("the-map-screens-and-their-shared-map-data.md", 333, "`[+0x34]`==0, writes `02B457DC`=(index≠" "0)"),
                   ("the-map-screens-and-their-shared-map-data.md", 1294, "byte `02B457D9 = (ebx != 0)`")]
       and os.path.isfile(os.path.join(HERE, "consumer-check.md")), strikes)
-other = [(os.path.basename(p), n + 1) for p in (MAP, RTR) for n, t in enumerate(lines(p))
-         if TAG in t and re.search(r"~~", t[t.find(TAG):]) and not (p == MAP and n + 1 in (333, 1294))]
+other = [(os.path.basename(p), n + body_lines(p)[1] + 1) for p in (MAP, RTR) for n, t in enumerate(body_lines(p)[0])
+         if TAG in t and re.search(r"~~", t[t.find(TAG):]) and not (p == MAP and n + body_lines(p)[1] + 1 in (333, 1294))]
 check("Z3 no other batch-20 note carries a strike", not other, other)
 eol = {os.path.basename(p): (open(p, "rb").read().count(b"\n"), open(p, "rb").read().count(b"\r\n")) for p in (MAP, RTR)}
-check("Z4 the map page is CRLF on every line (1338 / 1338) and the router page LF on every line (961 / 0)",
-      eol == {"the-map-screens-and-their-shared-map-data.md": (1338, 1338), "ui-request-router.md": (961, 0)}, eol)
+# the map page's line pin moved 1338 -> 1342 when SWE2-EC7's batch-171 commit 7f773f19f appended the 00402C30 entry
+check("Z4 the map page is CRLF on every line (1342 / 1342) and the router page LF on every line (961 / 0)",
+      eol == {"the-map-screens-and-their-shared-map-data.md": (1342, 1342), "ui-request-router.md": (961, 0)}, eol)
 head = {}
 for p in (MAP, RTR):
     rel = os.path.relpath(p, TZA).replace(os.sep, "/")

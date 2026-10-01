@@ -315,3 +315,5 @@ what an entry tunes belongs to the layer it tunes.
 
 - **Input — CLIENT.** A 66-byte function this page cites is called by `InputManager_TranslateBindingProfileToControlState` and by two Input bodies (100 and 105 bytes).
 - **Save_Load_Settings — MECHANICAL (4 edges).** 4 calls from page-cited bodies into shared Save_Load_Settings plumbing (`SaveImage_GetPersistentPayloadBase` (002EF2B0)) - the helpers' general call surface, not a Save_Load_Settings relationship of this page's subjects.
+- **Platform — SERVICE (1 edge).** 1 outbound (page-cited `001CCB20` call Platform bodies `005CC930`).
+- **Resource — CLIENT and SERVICE (3 edges).** 1 inbound (Resource bodies `001A7A50` call page-cited `00193D50`, `001CD0E0`, `001D1660`); 2 outbound (page-cited `001CD0E0`, `001D1660` call Resource bodies `0020C700`, `002EEEE0`).

@@ -474,3 +474,4 @@ the load's shared callees (49 call sites corpus-wide — `derived-call-signature
 - **WorldAreaField — CLIENT.** `00314020`, owned by that layer, calls `0017D280` — same shared
   logger consultation.
 - **Audio — CLIENT (1 edge).** 1 inbound (Audio bodies `00225BA0` call page-cited `0059F4A0`). Substantive edges include `0059F4A0` is called by `00225BA0`.
+- **Platform — SERVICE (1 edge).** 1 outbound (page-cited `0019AA20` call Platform bodies `0019A510`).

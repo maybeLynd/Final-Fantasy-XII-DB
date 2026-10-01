@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov21-bank-capacity-domain\prove.py", line 34, in <module>
+    g=G.graph(local,a,b,tail={0x3325d0:"0x426480",0x41e580:"0x409fe0"}.get(a))
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov21-bank-capacity-domain\prove_owner_reload_order.py", line 22, in graph
+    if pc not in ix or not lo<=pc<hi:raise ValueError('unclosed local CFG '+hex(pc))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: unclosed local CFG 0x5211f0

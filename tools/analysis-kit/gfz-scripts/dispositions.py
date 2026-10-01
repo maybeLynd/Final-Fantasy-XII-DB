@@ -47,6 +47,15 @@ FILE FORMAT - `_index/candidates/false-positive-dispositions.tsv`, tab separated
   reviewer  a DIFFERENT identity that checked the reading
   dated     YYYY-MM-DD
   reason    one line, in prose, that a stranger can check
+  review_record  WHERE THE REVIEW IS RECORDED (column 9, added 2026-10-01). One of:
+            `path` or `path#heading text` - a file under the database root; with a fragment, that
+            text must occur in the file; or `commit:HASH` - a commit git can resolve here.
+
+  4. A SIGNATURE NEEDS A DURABLE REVIEW. Added 2026-10-01 on FRONTIER-REQ-OPUS-DISPOSITIONS-RECORD-GATE-1001:
+     1e76d4dae signed 28 rows in one commit and 8 of them had no committed review anywhere
+     (_index/candidates/frontier-verdicts-repair-1001/README.md, ruling 3), yet the gate applied them,
+     because it checked only reviewer != author and the hash. A signed row whose review_record is
+     empty or does not resolve is UNRECORDED and suppresses nothing.
 
 usage: dispositions.py [--db DB] [--self-test]
 """
@@ -54,15 +63,49 @@ import hashlib
 import io
 import os
 import re
+import subprocess
 import sys
 
 REL = os.path.join("_index", "candidates", "false-positive-dispositions.tsv")
-COLUMNS = ["gate", "subject", "evidence_sha256", "verdict", "author", "reviewer", "dated", "reason"]
+COLUMNS = ["gate", "subject", "evidence_sha256", "verdict", "author", "reviewer", "dated", "reason",
+           "review_record"]
 VERDICTS = {"FALSE-POSITIVE", "SCOPED", "DUPLICATE"}
 
 APPLIED = "APPLIED"
 LAPSED = "LAPSED"            # subject known, evidence moved -- the finding returns
 UNREVIEWED = "UNREVIEWED"    # author is the reviewer, or none named -- never applied
+UNRECORDED = "UNRECORDED"    # signed, but no durable review record resolves -- never applied
+
+
+def record_problem(db, rec):
+    """None when `rec` resolves to a durable review record under `db`, else why it does not.
+
+    Fails closed: an empty value, a path outside the database root, a missing file, a fragment the
+    file does not contain, or a commit git cannot resolve (or no git at all) all refuse.
+    """
+    rec = (rec or "").strip()
+    if not rec:
+        return "no review_record"
+    if rec.startswith("commit:"):
+        h = rec[len("commit:"):].strip()
+        if not re.fullmatch(r"[0-9a-fA-F]{7,40}", h):
+            return "malformed commit %r" % h
+        try:
+            r = subprocess.run(["git", "cat-file", "-e", h + "^{commit}"], cwd=db,
+                               capture_output=True, timeout=30)
+        except (OSError, subprocess.SubprocessError) as e:
+            return "git unavailable (%s)" % e.__class__.__name__
+        return None if r.returncode == 0 else "commit %s does not resolve" % h
+    path, _, frag = rec.partition("#")
+    root = os.path.realpath(db)
+    full = os.path.realpath(os.path.join(root, path))
+    if not (full == root or full.startswith(root + os.sep)):
+        return "record %s is outside the database" % path
+    if not os.path.isfile(full):
+        return "record %s does not exist" % path
+    if frag and frag not in io.open(full, encoding="utf-8", errors="replace").read():
+        return "record %s does not contain %r" % (path, frag)
+    return None
 
 
 def digest(*parts):
@@ -114,8 +157,10 @@ def load(db):
     for n, line in enumerate(io.open(p, encoding="utf-8", errors="replace")):
         if line.startswith("#") or not line.strip():
             continue
-        c = line.rstrip("\n").split("\t")
-        if n == 0 and c[0].strip() == "gate":
+        c = line.rstrip("\r\n").split("\t")
+        # THE HEADER IS NOT ALWAYS LINE 0: the registry opens with `#` notes, and the old `n == 0` test
+        # loaded the header as a row with gate "gate" (harmless to gates, listed by the CLI as a row).
+        if c[0].strip() == "gate" and len(c) > 1 and c[1].strip() == "subject":
             continue
         if len(c) < len(COLUMNS):
             c += [""] * (len(COLUMNS) - len(c))
@@ -137,12 +182,16 @@ def append(db, row, verify=True):
     nothing, which is the intended state for a verdict its author has just written.
     """
     if isinstance(row, dict):
+        row = dict(row)
+        row.setdefault("review_record", "")   # an author's new row has no review yet
         missing = [c for c in COLUMNS if c not in row]
         if missing:
             raise ValueError("append: missing column(s): %s" % ", ".join(missing))
         cells = [str(row[c]) for c in COLUMNS]
     else:
         cells = [str(c) for c in row]
+        if len(cells) == len(COLUMNS) - 1:
+            cells.append("")
         if len(cells) != len(COLUMNS):
             raise ValueError("append: %d cells, expected %d" % (len(cells), len(COLUMNS)))
     for name, c in zip(COLUMNS, cells):
@@ -178,11 +227,13 @@ class Registry(object):
 
     def __init__(self, db, gate):
         self.gate = gate
+        self.db = db
         self.rows = [r for r in load(db) if r["gate"] == gate]
         self.by_subject = {}
         for r in self.rows:
             self.by_subject.setdefault(r["subject"], []).append(r)
-        self.applied, self.lapsed, self.unreviewed = [], [], []
+        self.applied, self.lapsed, self.unreviewed, self.unrecorded = [], [], [], []
+        self._record_memo = {}
         # EVERY SUBJECT THIS RUN ASKED ABOUT. A row whose subject is never asked about is neither
         # APPLIED nor LAPSED nor UNREVIEWED - it is INVISIBLE, because report() can only describe
         # lookups that happened. That is the hole FABLE found in
@@ -204,16 +255,29 @@ class Registry(object):
         # is considered and any valid reviewed one applies; only when none is valid is the page
         # UNREVIEWED. OPUS, 2026-09-30.
         matches = [r for r in cands if r["evidence_sha256"] == want]
-        for r in matches:
-            if r["reviewer"] and r["reviewer"] != r["author"] and r["verdict"] in VERDICTS:
+        signed = [r for r in matches
+                  if r["reviewer"] and r["reviewer"] != r["author"] and r["verdict"] in VERDICTS]
+        for r in signed:
+            # A SIGNATURE IS NOT A REVIEW UNTIL THE REVIEW IS RECORDED (2026-10-01, OPUS, on
+            # FRONTIER-REQ-OPUS-DISPOSITIONS-RECORD-GATE-1001): the row must name where.
+            if self.record_problem(r) is None:
                 self.applied.append((subject, r))
                 return APPLIED
+        if signed:
+            self.unrecorded.append((subject, signed[0], self.record_problem(signed[0])))
+            return UNRECORDED
         if matches:
             self.unreviewed.append((subject, matches[0]))
             return UNREVIEWED
         # The subject is known but nothing matches the evidence in front of us.
         self.lapsed.append((subject, cands[0], want))
         return LAPSED
+
+    def record_problem(self, r):
+        key = r.get("review_record", "")
+        if key not in self._record_memo:
+            self._record_memo[key] = record_problem(self.db, key)
+        return self._record_memo[key]
 
     def suppressed(self, subject, *evidence):
         """True only for a reviewed disposition given for exactly this evidence."""
@@ -233,6 +297,12 @@ class Registry(object):
             for subject, r in self.unreviewed:
                 out.append("      %s  author %s, reviewer %r" % (subject, r["author"],
                                                                  r["reviewer"]))
+        if self.unrecorded:
+            out.append("  %d disposition(s) NOT APPLIED - signed, but no durable review record:"
+                       % len(self.unrecorded))
+            for subject, r, why in self.unrecorded:
+                out.append("      %s  author %s, reviewer %s: %s" % (subject, r["author"],
+                                                                      r["reviewer"], why))
         if self.lapsed:
             out.append("  %d disposition(s) LAPSED - the evidence moved since the verdict, so the"
                        % len(self.lapsed))
@@ -279,12 +349,29 @@ def self_test():
     os.makedirs(os.path.join(db, "_index", "candidates"))
     ev = "line 416 says 02CA8F38 is never written"
     good = digest(ev)
+    rec = "_index/candidates/review-x/REVIEW.md"
+    os.makedirs(os.path.join(db, "_index", "candidates", "review-x"))
+    io.open(os.path.join(db, rec), "w", encoding="utf-8").write("# Review\n## doc::A signed\n")
     io.open(path_for(db), "w", encoding="utf-8").write(
         "\t".join(COLUMNS) + "\n" +
-        "\t".join(["g.py", "doc::A", good, "SCOPED", "OPUS", "FABLE", "2026-09-15", "scoped"]) + "\n" +
-        "\t".join(["g.py", "doc::B", good, "SCOPED", "OPUS", "OPUS", "2026-09-15", "self"]) + "\n" +
-        "\t".join(["g.py", "doc::C", good, "SCOPED", "OPUS", "", "2026-09-15", "none"]) + "\n" +
-        "\t".join(["g.py", "doc::D", good, "NOT-A-VERDICT", "OPUS", "FABLE", "2026-09-15", "x"]) + "\n")
+        "\t".join(["g.py", "doc::A", good, "SCOPED", "OPUS", "FABLE", "2026-09-15", "scoped",
+                   rec + "#doc::A signed"]) + "\n" +
+        "\t".join(["g.py", "doc::B", good, "SCOPED", "OPUS", "OPUS", "2026-09-15", "self", rec]) + "\n" +
+        "\t".join(["g.py", "doc::C", good, "SCOPED", "OPUS", "", "2026-09-15", "none", rec]) + "\n" +
+        "\t".join(["g.py", "doc::D", good, "NOT-A-VERDICT", "OPUS", "FABLE", "2026-09-15", "x", rec]) + "\n" +
+        # THE RECORD RULE, every way it can fail (2026-10-01): a signature alone never applies.
+        "\t".join(["g.py", "doc::R0", good, "SCOPED", "OPUS", "FABLE", "2026-09-30", "8 cells, no record"]) + "\n" +
+        "\t".join(["g.py", "doc::R1", good, "SCOPED", "OPUS", "FABLE", "2026-09-30", "missing file",
+                   "_index/candidates/review-gone/REVIEW.md"]) + "\n" +
+        "\t".join(["g.py", "doc::R2", good, "SCOPED", "OPUS", "FABLE", "2026-09-30", "wrong heading",
+                   rec + "#doc::R2 signed"]) + "\n" +
+        "\t".join(["g.py", "doc::R3", good, "SCOPED", "OPUS", "FABLE", "2026-09-30", "outside the db",
+                   "../outside.md"]) + "\n" +
+        "\t".join(["g.py", "doc::R4", good, "SCOPED", "OPUS", "FABLE", "2026-09-30", "bad commit",
+                   "commit:not-a-hash"]) + "\n" +
+        "\t".join(["g.py", "doc::R5", good, "SCOPED", "OPUS", "FABLE", "2026-09-30", "a file, no fragment",
+                   rec]) + "\n")
+    io.open(os.path.join(os.path.dirname(db), "outside.md"), "w", encoding="utf-8").write("x\n")
     ok = True
 
     def check(label, got, want):
@@ -301,6 +388,15 @@ def self_test():
     check("author reviewed their own -> not applied", r.state("doc::B", ev), UNREVIEWED)
     check("no reviewer named -> not applied", r.state("doc::C", ev), UNREVIEWED)
     check("unknown verdict word -> not applied", r.state("doc::D", ev), UNREVIEWED)
+    check("signed, no review_record -> not applied", r.state("doc::R0", ev), UNRECORDED)
+    check("signed, record file missing -> not applied", r.state("doc::R1", ev), UNRECORDED)
+    check("signed, heading not in the record -> not applied", r.state("doc::R2", ev), UNRECORDED)
+    check("signed, record outside the database -> not applied", r.state("doc::R3", ev), UNRECORDED)
+    check("signed, malformed commit -> not applied", r.state("doc::R4", ev), UNRECORDED)
+    check("signed, existing record, no fragment -> applied", r.state("doc::R5", ev), APPLIED)
+    check("suppressed() is false when unrecorded", r.suppressed("doc::R0", ev), False)
+    check("the report names the unrecorded rows", any("no durable review record" in l
+                                                      for l in r.report()), True)
     check("a subject with no row -> nothing", r.state("doc::MISSING", ev), None)
     check("suppressed() is true ONLY for applied", r.suppressed("doc::A", ev), True)
     check("suppressed() is false for a lapse", r.suppressed("doc::A", "moved"), False)
@@ -315,10 +411,12 @@ def self_test():
     # must not hide the signed one; and two unsigned rows must still read UNREVIEWED, never APPLIED.
     db3 = tempfile.mkdtemp(prefix="disp-shadow-")
     os.makedirs(os.path.join(db3, "_index", "candidates"))
+    io.open(os.path.join(db3, "_index", "REVIEW.md"), "w", encoding="utf-8").write("# r\n")
     io.open(path_for(db3), "w", encoding="utf-8").write(
         "\t".join(COLUMNS) + "\n" +
         "\t".join(["g.py", "doc::S", good, "SCOPED", "OPUS", "", "2026-09-30", "unsigned first"]) + "\n" +
-        "\t".join(["g.py", "doc::S", good, "SCOPED", "SWE2-ORACLE", "FABLE", "2026-09-30", "signed second"]) + "\n" +
+        "\t".join(["g.py", "doc::S", good, "SCOPED", "SWE2-ORACLE", "FABLE", "2026-09-30", "signed second",
+                   "_index/REVIEW.md"]) + "\n" +
         "\t".join(["g.py", "doc::U", good, "SCOPED", "OPUS", "", "2026-09-30", "unsigned"]) + "\n" +
         "\t".join(["g.py", "doc::U", good, "SCOPED", "SWE2-ORACLE", "SWE2-ORACLE", "2026-09-30", "self"]) + "\n")
     r3 = Registry(db3, "g.py")
@@ -363,5 +461,9 @@ if __name__ == "__main__":
     rows = load(db)
     print("%d disposition(s) in %s" % (len(rows), path_for(db)))
     for r in rows:
-        flag = "" if r["reviewer"] and r["reviewer"] != r["author"] else "   <- NOT APPLIED, no reviewer"
+        if not (r["reviewer"] and r["reviewer"] != r["author"]):
+            flag = "   <- NOT APPLIED, no reviewer"
+        else:
+            why = record_problem(db, r.get("review_record", ""))
+            flag = "" if why is None else "   <- NOT APPLIED, unrecorded: %s" % why
         print("  %-28s %-34s %s%s" % (r["gate"], r["subject"], r["verdict"], flag))

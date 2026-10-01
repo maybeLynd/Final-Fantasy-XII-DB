@@ -1,0 +1,298 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original boot-argument/capacity/reset/failure proof",
+  "driver_sha256": "88753d00c73fa86f17614622c94bf15904b5a80105ea896f12c90dfc8671401d",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "7b25b744885f31e0c3ff7b76e92031c373d6d4ec532acac5cc964a6582cce4c5"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 367,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 41,
+  "graphs": [
+    {
+      "entry": "0x3325d0",
+      "visited": 25,
+      "returns": [],
+      "calls": [
+        [
+          3352034,
+          "0x36c1d0"
+        ],
+        [
+          3352044,
+          "0x36a100"
+        ],
+        [
+          3352056,
+          "0x36c140"
+        ],
+        [
+          3352068,
+          "0x41e550"
+        ],
+        [
+          3352124,
+          "0x41e3a0"
+        ],
+        [
+          3352129,
+          "0x4269a0"
+        ]
+      ],
+      "external_tails": [
+        {
+          "pc": "0x332656",
+          "target": "0x426480"
+        }
+      ]
+    },
+    {
+      "entry": "0x41e3a0",
+      "visited": 46,
+      "returns": [],
+      "calls": [
+        [
+          4318165,
+          "0x51c270"
+        ],
+        [
+          4318219,
+          "0x409f80"
+        ],
+        [
+          4318231,
+          "0x46e4b0"
+        ],
+        [
+          4318243,
+          "0x478040"
+        ],
+        [
+          4318255,
+          "0x51ba20"
+        ],
+        [
+          4318260,
+          "0x521300"
+        ],
+        [
+          4318274,
+          "0x409f10"
+        ],
+        [
+          4318288,
+          "0x46e250"
+        ],
+        [
+          4318304,
+          "0x477ee0"
+        ],
+        [
+          4318320,
+          "0x51b9d0"
+        ]
+      ],
+      "external_tails": [
+        {
+          "pc": "0x41e484",
+          "target": "0x5211f0"
+        }
+      ]
+    },
+    {
+      "entry": "0x409f10",
+      "visited": 11,
+      "returns": [
+        "0x409f41"
+      ],
+      "calls": [
+        [
+          4235064,
+          "0x51f9f0"
+        ]
+      ],
+      "external_tails": []
+    },
+    {
+      "entry": "0x51f9f0",
+      "visited": 100,
+      "returns": [
+        "0x51fb6b"
+      ],
+      "calls": [
+        [
+          5372624,
+          "0x20e620"
+        ],
+        [
+          5372650,
+          "0x36c1d0"
+        ],
+        [
+          5372670,
+          "0x36a100"
+        ],
+        [
+          5372679,
+          "0x36c140"
+        ],
+        [
+          5372724,
+          "0x20e620"
+        ],
+        [
+          5372745,
+          "0x51f6b0"
+        ]
+      ],
+      "external_tails": []
+    },
+    {
+      "entry": "0x51fb70",
+      "visited": 14,
+      "returns": [
+        "0x51fba6"
+      ],
+      "calls": [],
+      "external_tails": []
+    },
+    {
+      "entry": "0x51fbb0",
+      "visited": 103,
+      "returns": [
+        "0x51fbd5",
+        "0x51fbf8",
+        "0x51fce2"
+      ],
+      "calls": [
+        [
+          5372891,
+          "0x51f7a0"
+        ],
+        [
+          5372969,
+          "0x3ab7f0"
+        ],
+        [
+          5373074,
+          "0x3ab7f0"
+        ]
+      ],
+      "external_tails": []
+    },
+    {
+      "entry": "0x51f7a0",
+      "visited": 66,
+      "returns": [
+        "0x51f841",
+        "0x51f84f",
+        "0x51f877"
+      ],
+      "calls": [
+        [
+          5371841,
+          "0x3ab7f0"
+        ],
+        [
+          5371898,
+          "0x3ab7f0"
+        ],
+        [
+          5371944,
+          "0x51f6b0"
+        ],
+        [
+          5371993,
+          "0x3ab7f0"
+        ]
+      ],
+      "external_tails": []
+    },
+    {
+      "entry": "0x41e580",
+      "visited": 2,
+      "returns": [],
+      "calls": [],
+      "external_tails": [
+        {
+          "pc": "0x41e587",
+          "target": "0x409fe0"
+        }
+      ]
+    }
+  ],
+  "identified_boot": {
+    "root_call": "33263C ->41E3A0",
+    "groups": 10,
+    "wrapper": "409F10 ->51F9F0",
+    "entry_stride": 80,
+    "shift": 5,
+    "local_capacity_store": 320,
+    "backing_bytes_arithmetic": 25600,
+    "runtime_value_observed": false
+  },
+  "root_binding": "41E3A0 sets D90=root; later409F10 readsD90 and41E580 registration readsD90. Noninterference and valid ordinary ABI assumed; no universal all-root/write-set closure.",
+  "overlapping_capacity_clears": [
+    {
+      "pc": "0x51fa38",
+      "operation": "constructor early clear",
+      "interval": [
+        80,
+        88
+      ],
+      "covers_capacity_54": true
+    },
+    {
+      "pc": "0x51fb97",
+      "operation": "reset",
+      "interval": [
+        80,
+        88
+      ],
+      "covers_capacity_54": true
+    }
+  ],
+  "failure_paths": [
+    {
+      "name": "used-ge-capacity",
+      "capacity_compare": "signed32 used58 versus capacity54",
+      "return": "0x51fbd5",
+      "calls": [],
+      "return_value": "FFFFFFFF (low16 FFFF)"
+    },
+    {
+      "name": "backing-page-null",
+      "capacity_compare": "signed32 used58 versus capacity54",
+      "return": "0x51fbf8",
+      "calls": [
+        {
+          "pc": "0x51fbdb",
+          "target": "0x51f7a0"
+        }
+      ],
+      "return_value": "FFFFFFFF (low16 FFFF)"
+    }
+  ],
+  "answer": "The identified boot argument gives the local constructor store320, assuming valid root identity and ordinary ABI/noninterference. This does not guarantee the bank value at completed startup or after opaque calls. Constructor/reset qword+50 also clears capacity+54; starts-only offset54 census misses them. Allocator-1/registration40A1CC alone cannot distinguish immediate used>=capacity from backing-page-null underused<capacity.",
+  "required_observation_discriminator": "If a later runtime proof is needed, record bank identity, initialization/teardown phase, capacity54 andused58, then distinguish51FBCA versus51FBE8 path before attributing40A1CC. Validate known positive registration and observer state; an undifferentiated -1 is not a full-bank witness.",
+  "limitations": [
+    "Original instruction/ABI/local-write proof only, no native/harness/live execution",
+    "Boot caller ordinary Windowsx64 nonvolatile EBX and valid root/frame/table nonaliasing/noninterference assumed",
+    "Local constructor store320 and dominance do not prove that later opaque calls preserve it, or establish real startup completed, all later writers, allocator backing success or consistent page metadata",
+    "Backing-page NULL path is statically present; feasibility of that combined state under initialized metadata remains open",
+    "Reset/preinit capacity0 is not simultaneously evidence for ordinary completed boot; actual callback timing/lifetime still needed if not statically closed",
+    "External root final tail5211F0 is a named boundary, not analyzed/executed; its effects remain open",
+    "Other roots/boot routes, authored simultaneous keys/owners and real bank exhaustion/competing-owner/rejection remain open; no wholeOV21 closure"
+  ]
+}

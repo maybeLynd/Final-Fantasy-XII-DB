@@ -1,0 +1,12 @@
+{
+  "name": "coherent-page-count-store-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "aae19462d37513b5435b17590fd73b8274c70599cba068e8ae739eed49124f7c",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "d24899ba024a0a062b49cb60f51ff6c4c51029bcb2dbf815634d229b45f19b1a",
+  "terminal": true,
+  "exception": null
+}

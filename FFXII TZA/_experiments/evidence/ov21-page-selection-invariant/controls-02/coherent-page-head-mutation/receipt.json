@@ -1,0 +1,12 @@
+{
+  "name": "coherent-page-head-mutation",
+  "exit": 1,
+  "diagnostic": "original byte mismatch",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "4555099a0fcd0e218facd93153195adf76e4df20ca285d544095439d69010422",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "0a9b8bb9a03f4b02d55bf4f9fe32f534663368456c186411c568b5368029aa95",
+  "terminal": true,
+  "exception": null
+}

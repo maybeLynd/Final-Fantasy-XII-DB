@@ -1,0 +1,12 @@
+{
+  "name": "missing-source",
+  "exit": 1,
+  "diagnostic": "source-01.json",
+  "diagnostic_matched": true,
+  "refused_result_absent": true,
+  "driver_sha256": "8ab56e71546eba15dab211245c1f55a40cd086cfb212815d78e5123ec8445fd9",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "ac297f28afe758ed32d2199845ef2f353b12e9767fe71d15073e8e42a4752c18",
+  "terminal": true,
+  "exception": null
+}

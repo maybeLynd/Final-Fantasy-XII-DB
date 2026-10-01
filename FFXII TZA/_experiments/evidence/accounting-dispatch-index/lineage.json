@@ -1,0 +1,31 @@
+{
+  "parent_commit": "1fccf591e98a2975cc358a619fbb47a047cbb25a",
+  "parent_manifest_sha256": "d4927fd135f97861ee64af294f75f898acf6c654da660d3b50d8324a16d8783c",
+  "retained_files": [
+    {
+      "path": "source-01.json",
+      "sha256": "0fa442952ee10250c7f3932aaebcb96e363d87052fa5b0d40b7501428228f764"
+    },
+    {
+      "path": "capture.py",
+      "sha256": "f9dd0a9fd7207088047d82c2278c62353d8385d6ee76037c403a10feed2f187d"
+    },
+    {
+      "path": "capture-01.status.json",
+      "sha256": "60db7da5255bd95b84694bd3d1dd2fe966346f1adba134adb5a2535e4a4d72e4"
+    },
+    {
+      "path": "capture-01.stdout",
+      "sha256": "0d7e507ec6fe997d390aa804b465d655bc087a3383ba259821c566a9abe3e8ae"
+    },
+    {
+      "path": "capture-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "d4927fd135f97861ee64af294f75f898acf6c654da660d3b50d8324a16d8783c"
+    }
+  ],
+  "limits": "Existing factory source reused hash-bound, not recaptured/reexecuted; independentacceptance pending"
+}

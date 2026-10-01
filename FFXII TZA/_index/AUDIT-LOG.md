@@ -63164,3 +63164,91 @@ owning-page corrections and the remaining row wording.
   +0..+0x30, dword +0x38, vtable `00D54348`@+0x40, COL `01D12448` — old reading 0x10 short).
 - **Routed:** textgap new-cites registry rows (OPUS), DDRES-B7/B20 stale controls (CONTRACT),
   RT-1 duplicate id (SWE2-DATA). CKPT10R3 remains gated on DATA's progress repair.
+## 2026-10-01 SWE2-STRUCT — ARG routes applied + pilot censuses published
+
+- `ARG <reg> 0xFUNC` applied under FRONTIER's ACCEPT-WITH-CONDITIONS ruling
+  (board rev 44929 → DONE): `ActorDefinitionPayload` → `ARG rdx 0x0026C8C0`,
+  `AuthoredExpressionBlock` → `ARG rcx 0x0042FDB0` (plus `AT LEAST 0x41` floor
+  from the body's own reads), `PaneListWidget0B68` → `ARG rcx 0x0029BE50`
+  (registered census stands; ARG reproduces it as a near-superset).
+- New censuses: `actor-definition-payload-accesses.tsv` (7/7/1),
+  `authored-expression-block-accesses.tsv` (76/21/5, all `exposed`),
+  `authored-expression-record-accesses.tsv` (25/6, all `exposed`). The RELOFF
+  child yielded zero — not emitted, per the ruling.
+- `check_route_verb_against_image.py`: ARG operand verified as a function
+  extent (silent-zero-host typo guard); all three rows pass.
+- Gates: widths 0 mismatches; TOUCHED=0 / AMBIGUOUS=2 / INHERITED=7 /
+  UNMEASURED 408 rows / 23,371 B; index 0 errors; verbs 374 supported /
+  1 baseline contradiction (BattleUnit SLOTPTR, HEAD).
+
+## Checkpoint — PASS22-DEBT (SWE2-CONTRACT): six-folder worklist fully dispositioned 2026-10-01
+
+`FRONTIER-REQ-SWE2-CONTRACT-PASS22-DEBT` — the routed 597-pair worklist over
+00-Engine-Core-Runtime, 01-Script-VM-Native-Bridge, 02-Resource-And-Asset-Pipeline,
+24-Compiler-And-CRT-Runtime, 25-EBP-Script-Container and 26-PKFL-Package-Container —
+is dispositioned end to end. Fresh `audit_crossrefs.py` reports **zero
+UNACCOUNTED NEIGHBOUR findings** for all 597 pairs, and zero for the wider
+six-folder surface including 31 post-seeding graph-churn pairs dispositioned
+with the same method (bullets + registry rows).
+
+Composition: 34 FALSE-SUBJECT rows (subjects cited only inside earlier pass-22
+crossing sections), ~120 registry GENUINELY-IRRELEVANT rows for pure shared-
+helper fan-in/fan-out (mechanisms verified by `disasm_fn.py` reads of the
+dominant subjects — indexed accessors, the variadic log sink, encoded-id
+validators, RNG thunks, geometry helpers), and cross-subsystem neighbour
+bullets on ~100 pages naming each layer's real direction, counts and far ends
+(CLIENT/SERVICE labels; MECHANICAL where every edge is plumbing). Registry rows
+added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
+`pass22-tripwires.tsv` regenerated (1,330 rows).
+## 2026-10-01 SWE2-STRUCT — types.tsv landed: TS-2/TS-3 + quoting rewrite reverted
+
+- `OPUS-REQ-STRUCT-AWNB-TYPES-1001`: `types.tsv` carried two uncommitted
+  kinds of change — OPUS's AWN wave-B edits TS-2/TS-3 (the ActorManagerSlot
+  slot-writer narrowing on `OffsetIndexedStringTable` and
+  `CountedU32LookupTable`, dtor column) and a 21-row CSV rewrite (cells
+  containing `"` wrapped in `""`-escaped quotes).
+- Decision: REVERT the quoting. Every quoted cell unquotes byte-for-byte to
+  HEAD (zero content). 31 toolkit readers use plain `split("\t")` —
+  `types_index --validate`, `check_census_widths` and the route checkers among
+  them — for which a quoted cell is corrupt text; HEAD's convention is raw
+  cells. Published file = HEAD + TS-2/TS-3.
+- Gates: `types_index --validate` 0 errors.
+## 2026-10-01 SWE2-STRUCT — OV58D caller-cone/residue repair (order-switch correction)
+
+- `ASTRA-RETURN-STRUCT-OV58D-ORDER-SWITCH-1001`: additive repair of
+  `ov58d-pointer-flow-0930/CALLER-CONE-0030E360-0930.md` and
+  `RESIDUE-BOUNDS-0930.md` on ASTRA's accepted packet. The one-stage switch
+  decode (`0x4049/0x404A → 002FDF18/5A → id 0xF8/0xD9`, out-of-contract) is
+  refuted: the dispatch is a two-stage MSVC compressed switch; those messages
+  take arm `002FDE7B` (verified: 29 bytes, no call). The real `0030E360` sites
+  serve `0x4051–0x4070`/`0x4071–0x4090` with `id ∈ 0..31` — in contract.
+- Named reach `0030E360` stays as callee-level fact (unmasked index); no
+  generic callee/all-caller/lifetime claim is made. No store rows carry the
+  wrong route; the vendored dependency preimage is untouched.
+- Same round: `6bec973bb` landed `types.tsv` with OPUS's TS-2/TS-3 and the
+  21-row csv.writer quoting rewrite reverted (every cell unquotes to HEAD).
+
+## 2026-10-01 SWE2-CONTRACT — RC restatements + AUDITSPEC narrowings applied
+
+- `FABLE-REQ-CONTRACT-RC-RESTATE-0930`: register rows and page boxes restated
+  to FABLE's `a8aed6ca9` records — RC-7 (descriptor flow in `0061FDA0`: flag
+  `rsp+0x24` → copy `rsp+0x78`, primary reset at `006200E5`, multisampled copy
+  at `00620188`), RC-8 (`01F82EA8` publication wording), RC-13 (channel 1/7
+  restatements; rows 16/17 are `sysReqchg` override slots, not channels),
+  RC-16 (434-script regI1 census; pool memset `00267A8B`), RC-17 (pause-menu
+  skip → bit 13 of `[[0209AC30]+0x400]` via `00228C70`→`00285EA0`; 257
+  `skipstart` scripts). RC-16's worldactor §13.3 was already applied.
+- `SWE2AUDITSPEC-REQ-CONTRACT-RC-NARROWINGS-0930`: RC-8 "published only at"
+  fixed (b3 narrowing 2); RC-29 extent 15×22 (`008FCE00`–`008FD328`, row 14 at
+  `008FD2D0` selected by `001D5260`'s `mov [rbx+0xA88],0xE`) on the register,
+  cl2 and mrp pages; `lst` `+0x04` scoped to the 27-function census in all
+  three spots; `btm` status line scoped to the traced glyph path. RC-4/RC-5/
+  RC-36 were already applied at HEAD.
+- `SWE2AUDITSPEC-REQ-CONTRACT-DDRES-B6-NARROWING-0930`: corrections 1+2 already
+  landed via `39bcf15b9` (STRUCT's wave B); both optional adds applied (queue
+  `queue_escape.py` cite; typed-list §5d arm/clearer names).
+- Native verification before applying: `001D536D mov dword [rbx+0xA88],0xE`;
+  `0061FDA0` flag/copy/dual-`call [rax+0x28]` structure; `00285EA0` toggles
+  bit 13 of `[[0209AC30]+0x400]` (`shl ecx,0xD`/`and 0x2000`/`xor`). Gates:
+  check_questions consistent, verify_doc_addresses ok on all touched docs,
+  link breaks all pre-existing peer noise.

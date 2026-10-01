@@ -1,0 +1,698 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original workspace factory/caller/size/failure source proof",
+  "driver_sha256": "969e51cffd2f5e1a2fabc25250655ffde9c83a0aac5e75b7e1e4f2d5a70c7625",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "0fa442952ee10250c7f3932aaebcb96e363d87052fa5b0d40b7501428228f764"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "path": "retained/retained/source-01.json",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 332,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 442,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 128,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 111,
+  "graphs": [
+    {
+      "entry": "0x41f340",
+      "instructions": 236,
+      "returns": [
+        "0x41f72d"
+      ],
+      "calls": [
+        [
+          4322164,
+          "0x20e600"
+        ],
+        [
+          4322179,
+          "0x409f50"
+        ],
+        [
+          4322209,
+          "0x409660"
+        ],
+        [
+          4322223,
+          "0x20e600"
+        ],
+        [
+          4322243,
+          "0x409fa0"
+        ],
+        [
+          4322255,
+          "0x20e600"
+        ],
+        [
+          4322270,
+          "0x409f50"
+        ],
+        [
+          4322292,
+          "0x20e600"
+        ],
+        [
+          4322315,
+          "0x409660"
+        ],
+        [
+          4322323,
+          "0x409240"
+        ],
+        [
+          4322334,
+          "0x20e600"
+        ],
+        [
+          4322371,
+          "0x3712e0"
+        ],
+        [
+          4322381,
+          "0x3e6d10"
+        ],
+        [
+          4322450,
+          "0x3e55f0"
+        ],
+        [
+          4322523,
+          "0x3ab8b0"
+        ],
+        [
+          4322531,
+          "0x20e620"
+        ],
+        [
+          4322548,
+          "0x20e600"
+        ],
+        [
+          4322556,
+          "0x3ab7f0"
+        ],
+        [
+          4322569,
+          "0x861ec0"
+        ],
+        [
+          4322589,
+          "0x20e600"
+        ],
+        [
+          4322599,
+          "0x3ab910"
+        ],
+        [
+          4322611,
+          "0x20e600"
+        ],
+        [
+          4322623,
+          "0x20e600"
+        ],
+        [
+          4322682,
+          "0x46e4d0"
+        ],
+        [
+          4322701,
+          "0x2ed570"
+        ],
+        [
+          4322738,
+          "0x20e600"
+        ],
+        [
+          4322746,
+          "0x3ab7f0"
+        ],
+        [
+          4322766,
+          "0x3e6d10"
+        ],
+        [
+          4322777,
+          "0x3e6cf0"
+        ],
+        [
+          4322791,
+          "0x861eba"
+        ],
+        [
+          4322806,
+          "0x51d220"
+        ],
+        [
+          4322831,
+          "0x372350"
+        ],
+        [
+          4322844,
+          "0x373100"
+        ],
+        [
+          4322872,
+          "0x20e600"
+        ],
+        [
+          4322898,
+          "0x20e600"
+        ],
+        [
+          4322910,
+          "0x20e600"
+        ],
+        [
+          4322974,
+          "0x4780c0"
+        ],
+        [
+          4323000,
+          "0x421cd0"
+        ],
+        [
+          4323043,
+          "0x20e600"
+        ],
+        [
+          4323058,
+          "0x409f50"
+        ],
+        [
+          4323070,
+          "0x3b3550"
+        ]
+      ]
+    },
+    {
+      "entry": "0x46e4d0",
+      "instructions": 48,
+      "returns": [
+        "0x46e581"
+      ],
+      "calls": [
+        [
+          4646128,
+          "0x51fbb0"
+        ],
+        [
+          4646154,
+          "0x2ed570"
+        ],
+        [
+          4646165,
+          "0x3721e0"
+        ],
+        [
+          4646231,
+          "0x372820"
+        ],
+        [
+          4646242,
+          "0x46e6f0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3712e0",
+      "instructions": 20,
+      "returns": [
+        "0x371324"
+      ],
+      "calls": [
+        [
+          3609321,
+          "0x409f50"
+        ],
+        [
+          3609337,
+          "0x409660"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3ab8b0",
+      "instructions": 28,
+      "returns": [
+        "0x3ab906"
+      ],
+      "calls": [
+        [
+          3848396,
+          "0x36c1d0"
+        ],
+        [
+          3848412,
+          "0x36b160"
+        ],
+        [
+          3848423,
+          "0x36a100"
+        ],
+        [
+          3848431,
+          "0x36c140"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3713c0",
+      "instructions": 52,
+      "returns": [
+        "0x371496"
+      ],
+      "calls": [
+        [
+          3609555,
+          "0x20e600"
+        ],
+        [
+          3609563,
+          "0x3ab7f0"
+        ],
+        [
+          3609571,
+          "0x20e620"
+        ],
+        [
+          3609599,
+          "0x20e600"
+        ],
+        [
+          3609610,
+          "0x409f50"
+        ],
+        [
+          3609621,
+          "0x4096c0"
+        ],
+        [
+          3609629,
+          "0x20e620"
+        ],
+        [
+          3609642,
+          "0x20e620"
+        ],
+        [
+          3609659,
+          "0x20e600"
+        ],
+        [
+          3609684,
+          "0x20e600"
+        ],
+        [
+          3609698,
+          "0x20e620"
+        ],
+        [
+          3609711,
+          "0x20e600"
+        ],
+        [
+          3609727,
+          "0x20e600"
+        ],
+        [
+          3609735,
+          "0x3e1c50"
+        ]
+      ]
+    },
+    {
+      "entry": "0x372820",
+      "instructions": 387,
+      "returns": [
+        "0x372f53"
+      ],
+      "calls": [
+        [
+          3614798,
+          "0x20e620"
+        ],
+        [
+          3614812,
+          "0x20e600"
+        ],
+        [
+          3614823,
+          "0x409f50"
+        ],
+        [
+          3614842,
+          "0x409a30"
+        ],
+        [
+          3614855,
+          "0x4096c0"
+        ],
+        [
+          3614991,
+          "0x20e620"
+        ],
+        [
+          3615044,
+          "0x20e620"
+        ],
+        [
+          3615087,
+          "0x20e600"
+        ],
+        [
+          3615095,
+          "0x3ab7f0"
+        ],
+        [
+          3615103,
+          "0x20e620"
+        ],
+        [
+          3615116,
+          "0x20e600"
+        ],
+        [
+          3615130,
+          "0x20e620"
+        ],
+        [
+          3615151,
+          "0x20e600"
+        ],
+        [
+          3615165,
+          "0x861eba"
+        ],
+        [
+          3615178,
+          "0x3713c0"
+        ],
+        [
+          3615189,
+          "0x20e600"
+        ],
+        [
+          3615247,
+          "0x20e600"
+        ],
+        [
+          3615273,
+          "0x4095a0"
+        ],
+        [
+          3615292,
+          "0x20e600"
+        ],
+        [
+          3615307,
+          "0x46d120"
+        ],
+        [
+          3615391,
+          "0x373dc0"
+        ],
+        [
+          3615410,
+          "0x46d120"
+        ],
+        [
+          3615419,
+          "0x46d120"
+        ],
+        [
+          3615426,
+          "0x20e620"
+        ],
+        [
+          3615483,
+          "0x20e620"
+        ],
+        [
+          3615676,
+          "0x409300"
+        ],
+        [
+          3615691,
+          "0x4094d0"
+        ],
+        [
+          3615944,
+          "0x20e600"
+        ],
+        [
+          3615979,
+          "0x373dc0"
+        ],
+        [
+          3616014,
+          "0x861ec0"
+        ],
+        [
+          3616166,
+          "0x409300"
+        ],
+        [
+          3616429,
+          "0x373d00"
+        ],
+        [
+          3616442,
+          "0x20e600"
+        ],
+        [
+          3616466,
+          "0x20e600"
+        ],
+        [
+          3616474,
+          "0x373d00"
+        ],
+        [
+          3616482,
+          "0x373ea0"
+        ],
+        [
+          3616493,
+          "0x20e600"
+        ],
+        [
+          3616519,
+          "0x20e600"
+        ],
+        [
+          3616531,
+          "0x409f50"
+        ],
+        [
+          3616542,
+          "0x4096c0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x20e600",
+      "instructions": 3,
+      "returns": [
+        "0x20e609"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x51fcf0",
+      "instructions": 93,
+      "returns": [
+        "0x51fe23"
+      ],
+      "calls": [
+        [
+          5373203,
+          "0x3ab7f0"
+        ],
+        [
+          5373239,
+          "0x3ab7f0"
+        ],
+        [
+          5373308,
+          "0x51f880"
+        ],
+        [
+          5373331,
+          "0x3ab7f0"
+        ],
+        [
+          5373375,
+          "0x3ab7f0"
+        ],
+        [
+          5373442,
+          "0x20e620"
+        ]
+      ]
+    },
+    {
+      "entry": "0x3ab7f0",
+      "instructions": 32,
+      "returns": [
+        "0x3ab802",
+        "0x3ab829",
+        "0x3ab845",
+        "0x3ab852"
+      ],
+      "calls": [
+        [
+          3848236,
+          "0x36b130"
+        ]
+      ]
+    },
+    {
+      "entry": "0x20e620",
+      "instructions": 3,
+      "returns": [
+        "0x20e628"
+      ],
+      "calls": []
+    }
+  ],
+  "abi": {
+    "factory_frame_bytes": 120,
+    "factory_arg5_entry28_currentA0": "optional source blob",
+    "factory_arg6_entry30_currentA8": "DWORD length",
+    "wrapper_frame_bytes": 88,
+    "wrapper_arg5_entry28_current80": "workspace representation",
+    "wrapper_arg6_entry30_current88": "DWORD value; factory supplies0",
+    "wrapper_arg7_entry38_current90": "optional source blob",
+    "wrapper_arg8_entry40_current98": "DWORD length",
+    "size_helper_frame_bytes": 40,
+    "helper_arg5_entry28_current50": "DWORD length"
+  },
+  "offset_correspondence": "3712E0 and372820 compute identical low32 O=((t+(15 if signbit(t) else0)) mod2^32)&FFFFFFF0, t=(2*(149h*DWORD_C+zeroextendedWORD_38)+15) mod2^32. ADDoperand ordering differs but ring addition commutes. Same unchanged header is a premise; opaque query calls do not prove it.",
+  "requested_size": "3712E0 returns low32(O+L) savedEBP. Factory computes additional R13 side component S and one/two model-side component Q, then requestN=low32(E+S+Q) inECX at3AB8B0 flagEDX1. Flag1 calls36B160(ECX32), zeroextendsEAX intoRDI; no allocation result checked before encoding/storing2FC, zero fill, and binder call.",
+  "conditional_extent": "For same unchanged header, O,L,S,Q nonnegative and each required arithmetic without wrap, E=O+L andN=E+S+Q, so [O,O+L) fits the first E component and requestedN. Actual allocator success/usable extent/reference roundtrip/native writes/lifetime remain independent premises.",
+  "size_width_boundary": "Allocation adapter takes zeroextendedECX32 request. Factory zero-fill R8 is MOVSXD of total32; binder copyR8 is MOVSXD of length32. Highbit total/length becomes a huge unsigned64 call argument; no universal malformed-size safety or authored-domain acceptance.",
+  "workspace_binding": "Allocation-adapter result ->Encode at41F4E3 ->instanceDWORD2FC. Decode stored2FC at41F533 ->RBX ->arg5 at41F575; wrapper forwards samearg5 to372820. Resolver/copy/native initialization effects and opaque aliasing are not executed or assumed.",
+  "failure": {
+    "premise": "51FBB0 returns EAX=FFFFFFFF; normal ABI and earlier calls complete",
+    "wrapper_path": [
+      "0x46e4f5",
+      "0x46e4f7",
+      "0x46e4fa",
+      "0x46e4fc",
+      "0x46e4fe",
+      "0x46e56e",
+      "0x46e573",
+      "0x46e578",
+      "0x46e57c",
+      "0x46e57e",
+      "0x46e580",
+      "0x46e581"
+    ],
+    "wrapper_result": "FFFFFFFF preserved; binder372820 skipped",
+    "caller_path": [
+      "0x41f57f",
+      "0x41f582",
+      "0x41f584",
+      "0x41f586",
+      "0x41f595"
+    ],
+    "result": "41F584 XOR ESI,ESI zeroextendsRSI=0;41F586 jumps41F595 DWORDread[RSI+4], address4, no intervening call. Natural bank failure and actual OS fault not established."
+  },
+  "codec_qualification": "Encode(0)=low32(-B_low); Decode(Encode(0))=low64(B+low32(-B_low)). EncodedNULL label in parent denotes encoded input zero, not universal decodedNULL. Base0 retained ruling/samples not rerun; no EXP127 promotion.",
+  "mathematical_controls": [
+    {
+      "headerC": "0x0",
+      "header38": "0x0",
+      "length32": "0x0",
+      "offset32": "0x0",
+      "component32": "0x0"
+    },
+    {
+      "headerC": "0x1",
+      "header38": "0x0",
+      "length32": "0x20",
+      "offset32": "0x2a0",
+      "component32": "0x2c0"
+    },
+    {
+      "headerC": "0x0",
+      "header38": "0xffff",
+      "length32": "0x10",
+      "offset32": "0x20000",
+      "component32": "0x20010"
+    },
+    {
+      "headerC": "0x7fffffff",
+      "header38": "0xffff",
+      "length32": "0x0",
+      "offset32": "0x1fd70",
+      "component32": "0x1fd70"
+    },
+    {
+      "headerC": "0xffffffff",
+      "header38": "0x0",
+      "length32": "0x80000000",
+      "offset32": "0xfffffd80",
+      "component32": "0x7ffffd80"
+    }
+  ],
+  "codec_mathematical_counterexamples": [
+    {
+      "base": "0x0",
+      "encoded_input0": "0x0",
+      "decoded_encoded0": "0x0"
+    },
+    {
+      "base": "0x1000",
+      "encoded_input0": "0xfffff000",
+      "decoded_encoded0": "0x100000000"
+    },
+    {
+      "base": "0x1234567800001000",
+      "encoded_input0": "0xfffff000",
+      "decoded_encoded0": "0x1234567900000000"
+    }
+  ],
+  "limits": [
+    "No game/native/isolated-machine-code execution or instrumented process; examples and fit theorem are source calculations",
+    "Conditional field/header/resource stability, valid private ABI frames/objects and no aliasing/interference; caller queries not proved identical over time",
+    "Native36B160/861EC0/861EBA/3AB910 effects, failure cleanup, actual allocator usable bytes, lifetime/reuse and internal78/88 target arrays remainOPEN",
+    "No complete direct/indirect allcaller/allwriter proof; located cached caller chain is preparation evidence only",
+    "Address4 consequence is conditional original effective-address proof; not natural reachability, observed crash or instruction fault execution",
+    "Parent frozen evidence remains producer-valid pending publication/independent acceptance; additive qualification doesnot rewrite immutable inputs",
+    "No wholeOV closure, new runtime count, menu attempt, K14 rerun or EXP127 semantic promotion"
+  ]
+}

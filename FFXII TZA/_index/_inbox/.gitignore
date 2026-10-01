@@ -1,2 +1,11 @@
 TEAM.lock
 TEAM-*.tmp
+# One-shot board-op inputs and publish-message files: consumed by `team.py apply`
+# and `publish_paths.sh`; the journaled op in TEAM.json is the durable record.
+# (FRONTIER ruling on OPUS-NOTICE-FRONTIER-CLOUD-PROGRAM-AND-BOARD-OP-FILES-1001,
+# 2026-10-01 - stops the ~1,360-file pileup; files already tracked stay tracked.)
+op_*.json
+ops_*.json
+_*.json
+pubmsg_*.txt
+_pub*_msg.txt

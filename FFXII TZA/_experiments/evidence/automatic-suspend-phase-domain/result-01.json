@@ -1,0 +1,150 @@
+{
+  "producer_complete": true,
+  "method": "A retained STATIC_ONLY original guard-domain proof",
+  "driver_sha256": "51ce02d24fac809ce615feaf6c34dfddd8b00de99843c5420adaaa2bae2c333f",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "31c27aa8b2da192db7c62c62420ef2f44d2cc5cabe79b1149d90dcd782ded67d"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 173,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "parent_manifest_sha256": "625d19648d361068d2a60fb8e5abeb7928e20411223564051242b6200ebd78a7",
+  "capture_reexecuted": false,
+  "instruction_assertions": 16,
+  "partitions": [
+    {
+      "flag24": false,
+      "current_u16_le542": false,
+      "phase_u8_ge6": false,
+      "allocator_attempt_reachable": true,
+      "input_refusal_returns_zero": false,
+      "eligible_does_not_guarantee_allocator_success": true,
+      "visited": 68,
+      "calls": [
+        {
+          "pc": "0x30f02a",
+          "target": "0x30dfa0"
+        },
+        {
+          "pc": "0x30f0ec",
+          "target": "0x861ec0"
+        }
+      ]
+    },
+    {
+      "flag24": false,
+      "current_u16_le542": false,
+      "phase_u8_ge6": true,
+      "allocator_attempt_reachable": true,
+      "input_refusal_returns_zero": false,
+      "eligible_does_not_guarantee_allocator_success": true,
+      "visited": 68,
+      "calls": [
+        {
+          "pc": "0x30f02a",
+          "target": "0x30dfa0"
+        },
+        {
+          "pc": "0x30f0ec",
+          "target": "0x861ec0"
+        }
+      ]
+    },
+    {
+      "flag24": false,
+      "current_u16_le542": true,
+      "phase_u8_ge6": false,
+      "allocator_attempt_reachable": true,
+      "input_refusal_returns_zero": false,
+      "eligible_does_not_guarantee_allocator_success": true,
+      "visited": 70,
+      "calls": [
+        {
+          "pc": "0x30f02a",
+          "target": "0x30dfa0"
+        },
+        {
+          "pc": "0x30f0ec",
+          "target": "0x861ec0"
+        }
+      ]
+    },
+    {
+      "flag24": false,
+      "current_u16_le542": true,
+      "phase_u8_ge6": true,
+      "allocator_attempt_reachable": false,
+      "input_refusal_returns_zero": true,
+      "eligible_does_not_guarantee_allocator_success": false,
+      "visited": 17,
+      "calls": []
+    },
+    {
+      "flag24": true,
+      "current_u16_le542": false,
+      "phase_u8_ge6": false,
+      "allocator_attempt_reachable": false,
+      "input_refusal_returns_zero": true,
+      "eligible_does_not_guarantee_allocator_success": false,
+      "visited": 12,
+      "calls": []
+    },
+    {
+      "flag24": true,
+      "current_u16_le542": false,
+      "phase_u8_ge6": true,
+      "allocator_attempt_reachable": false,
+      "input_refusal_returns_zero": true,
+      "eligible_does_not_guarantee_allocator_success": false,
+      "visited": 12,
+      "calls": []
+    },
+    {
+      "flag24": true,
+      "current_u16_le542": true,
+      "phase_u8_ge6": false,
+      "allocator_attempt_reachable": false,
+      "input_refusal_returns_zero": true,
+      "eligible_does_not_guarantee_allocator_success": false,
+      "visited": 12,
+      "calls": []
+    },
+    {
+      "flag24": true,
+      "current_u16_le542": true,
+      "phase_u8_ge6": true,
+      "allocator_attempt_reachable": false,
+      "input_refusal_returns_zero": true,
+      "eligible_does_not_guarantee_allocator_success": false,
+      "visited": 12,
+      "calls": []
+    }
+  ],
+  "allocator_attempt_domain": "!flag24 && (current_u16 > 542 || phase_u8 < 6)",
+  "refusal_domain": "flag24 || (current_u16 <= 542 && phase_u8 >= 6)",
+  "answer": "A same-unit ordinary current action at phase6..255 cannot enter this snapshot/automatic-commit success leg under stable entry state. This excludes that particular post-queue interruption explanation, not all queued/current/global-kind mismatch.",
+  "countermodel_limits": "Globalkind262 does not imply thisunit current262. Other units, different writers/callers, copied/restored state and prephase6 transitions remain independent. Do not transform conditional sameunit exclusion into a universal identity/lifetime invariant.",
+  "boundaries": {
+    "ordinary_ids": "0..542 inclusive",
+    "outside_ordinary_ids": "543..65535 inclusive",
+    "early_phases": "0..5",
+    "late_phases": "6..255"
+  },
+  "limitations": [
+    "No native/emulated/live execution; eight categorical CFG partitions are mathematical path accounting",
+    "Retained d750 original capture reused, not credited as another capture; no independent acceptance inferred",
+    "Helper input reads and branch effects assume valid same-unit private state/noninterference; caller already cleared retaliation target28 before this helper, so helper refusal does not imply whole caller side-effect freedom",
+    "Eligibility only reaches allocator; empty8slot pool may still returnNULL and refuse; normal copy/memset return additionally required for success",
+    "No whole OV21/OV42, allcallers, initialized reachability, ownership or scheduler closure"
+  ]
+}
